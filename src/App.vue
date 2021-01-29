@@ -8,6 +8,7 @@
 </template>
 
 <style>
+@import './assets/less/theme.less';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

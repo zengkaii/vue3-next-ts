@@ -2,8 +2,6 @@
 // const path = require('path')
 
 const path = require('path')
-console.log(path)
-// const resolve = (dir) => path.join(__dirname, dir) // 路径
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -28,13 +26,22 @@ module.exports = {
   chainWebpack: (config) => {
     config.resolve.alias.set('@', resolve('src'))
   },
+  // pluginOptions:{
+	// 	"style-resources-loader": {
+	// 		preProcessor: "less",
+	// 		patterns: [
+	// 			//这个是加上自己的路径，
+	// 			path.resolve(__dirname, "./src/assets/less/theme.less")
+	// 		]
+	// 	}
+  // },
   // css: {
   //   requireModuleExtension: true, // 是否开启CSSmodule并保留xxx.module.css后缀
   //   loaderOptions: {
   //       less: {
   //           javascriptEnabled: true
   //       },
-  //       sass: {additionalData: `@import "@/styles/global.scss";`}
+  //       sass: {additionalData: `@import "./src/assets/less/theme.scss";`}
   //   }
   // },
 }
