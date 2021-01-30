@@ -119,8 +119,8 @@ const store = createStore({
   }
 })
 
-export function setupStore (app: App) {
-  app.use(store)
-}
+// export function setupStore (app: App) {
+//   app.use(store)
+// }
 
 export default store

@@ -1,7 +1,6 @@
 <template lang="pug">
 .aside-container
-	.aside-search
-		TsMenu(:menuList="menuList" :backgroundColor="'#545c64'" :textColor="'#fff'" :activeTextColor="'#ffd04b'" @menuClick="menuClick")
+	TsMenu(:menuList="menuList" :backgroundColor="'#545c64'" :textColor="'#fff'" :activeTextColor="'#ffd04b'" @menuClick="menuClick")
 </template>
 <script lang="ts">
 	import { defineComponent, computed } from 'vue'
@@ -45,12 +44,19 @@
 </script>
 <style lang="less" scoped>
 .aside-container{
-    // width: 201px;
-    .aside-search{
-        /deep/ .el-submenu .el-menu-item{
-            min-width: 199px;
-        }
-    }
+	// width: 201px;
+	overflow: hidden;
+	.el-menu{
+		text-align: left;
+	}
+	.aside-search{
+			/deep/ .el-submenu .el-menu-item{
+					min-width: 199px;
+			}
+			/deep/ .el-submenu__title{
+				// text-align: left;
+			}
+	}
 }
 // .aside-container{
 // 	// position: relative;

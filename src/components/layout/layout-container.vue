@@ -40,6 +40,10 @@ div
 	// height: 92vh;
 	background-color: @second-color;
 	color: @light-color;
+	&::-webkit-scrollbar{
+		width: 0px;
+		opacity: 0;
+	}
 }
   
 .el-main {
@@ -60,10 +64,14 @@ body > .el-container {
 .el-container:nth-child(7) .el-aside {
 	line-height: 320px;
 }
-.view-container{
-	overflow-y: auto;
-	overflow-x: hidden;
-	width: 100%;
-	height: 100%;
-}
+	.view-container{
+		overflow-y: auto;
+		// overflow-x: hidden;
+		// width: 100%;
+		flex: 1;
+		height: 100%;
+		&::-webkit-scrollbar{
+		}
+	}
+
 </style>

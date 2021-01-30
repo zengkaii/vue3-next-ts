@@ -26,7 +26,6 @@ export default defineComponent({
 	emits: ['menuClick'],
 	methods: {
 		menuClickMethod(i) {
-			console.log(123 , i)
 			this.$emit('menuClick', i)
 		}
 	},
