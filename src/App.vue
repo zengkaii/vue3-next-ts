@@ -1,10 +1,7 @@
-<template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/testPage">testPage</router-link>
-  </div>
-  <router-view />
+<template lang="pug">
+//- router-link(to="/") 点我
+#app
+  router-view 
 </template>
 
 <style>

@@ -24,11 +24,60 @@ export default defineComponent({
 		}
 	},
 	emits: ['menuClick'],
-	setup(props, context) {
-		
-	},
+	// setup(props, context) {
+		// const children: any[] = []
+		// function menuRender(item: MenuList): VNode {
+		// 	let subNode: any
+		// 	if (item.children && item.children.length > 0) {
+		// 			let menuItemNodes= [] as any[]
+		// 			menuItemNodes =  item.children.map( i => {
+		// 				if (i.children && i.children.length > 0) {
+		// 						return menuRender(i)
+		// 				} else {
+		// 					return (
+		// 						<ElMenuItem index={i.id.toString()} v-on-click={context.emit('menuClick',i)}>
+		// 							<span>
+		// 								{i.label}
+		// 							</span>
+		// 						</ElMenuItem>
+		// 					)
+		// 				}
+		// 			})
+		// 			subNode = (
+		// 				<ElSubmenu index={item.id.toString()} >
+		// 					<template v-slot="title">
+		// 						<span>
+		// 							{item.label}
+		// 						</span>
+		// 					</template>
+		// 					<ElMenuItemGroup>
+		// 						{menuItemNodes}
+		// 					</ElMenuItemGroup>
+		// 				</ElSubmenu>
+		// 			)
+		// 	} else {
+		// 		subNode = (
+		// 			<ElMenuItem index={item.id.toString()} v-on-click={context.emit('menuClick',item)}>
+		// 				<span>
+		// 					{ item.label}
+		// 				</span>
+		// 			</ElMenuItem>
+		// 		)
+		// 	}
+		// 	return subNode
+		// }
+		// props.menuList.forEach((item: MenuList) => {
+		// 	children.push(menuRender(item))
+		// })
+		// return (
+		// 	<ElMenu backgroundColor={props.backgroundColor} textColor={props.textColor} activeTextColor={props.activeTextColor}>
+		// 		{children}
+		// 	</ElMenu>
+		// )
+	// },
 	methods: {
 		menuClickMethod(i) {
+			console.log(123 , i)
 			this.$emit('menuClick', i)
 		}
 	},
@@ -38,27 +87,31 @@ export default defineComponent({
 		function menuRender(item: MenuList): VNode {
 			let subNode: any
 			if (item.children && item.children.length > 0) {
-					let menuItemNodes: any[]
+					let menuItemNodes = [] as any[]
 					menuItemNodes =  item.children.map( i => {
 						if (i.children && i.children.length > 0) {
 								return menuRender(i)
 						} else {
 							return (
-								<ElMenuItem index={i.id.toString()} v-on-click={that.menuClickMethod(i)}>
-									<span>
-										{i.label}
-									</span>
-								</ElMenuItem>
+								<div onClick={() => {that.menuClickMethod(i)} }>
+									<ElMenuItem index={i.id.toString()} >
+										<span> 
+											{i.label}
+										</span>
+									</ElMenuItem>
+								</div>
 							)
 						}
 					})
+					const slots = {
+						title: () => {
+							return <span>
+								{item.label}
+							</span>
+						}
+					}
 					subNode = (
-						<ElSubmenu index={item.id.toString()} >
-							<template v-slot="title">
-								<span>
-									{item.label}
-								</span>
-							</template>
+						<ElSubmenu index={item.id.toString()} v-slots={slots}>
 							<ElMenuItemGroup>
 								{menuItemNodes}
 							</ElMenuItemGroup>
@@ -66,11 +119,16 @@ export default defineComponent({
 					)
 			} else {
 				subNode = (
-					<ElMenuItem index={item.id.toString()} v-on-click={that.menuClickMethod(item)}>
-						<span>
-							{ item.label}
-						</span>
-					</ElMenuItem>
+					<div onClick={()=>{
+						that.menuClickMethod(item)
+					}}>
+						<ElMenuItem index={item.id.toString()} >
+							<span>
+								{ item.label}
+							</span>
+						</ElMenuItem>
+
+					</div>
 				)
 			}
 			return subNode

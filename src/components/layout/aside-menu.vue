@@ -27,6 +27,7 @@
 
 
             function  menuClick(item: MenuList) {
+                console.log(item)
                 if (!item.path) {
                     return
                 }

@@ -18,6 +18,6 @@ export const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
     // process.env.BASE_URL
     history: createWebHashHistory(''),
-    routes
+    routes: routes
 })
 export default router
