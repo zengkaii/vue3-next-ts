@@ -1,5 +1,5 @@
 // import Vue, {CreateElement, VNode} from 'vue'
-import {defineComponent, VNode} from 'vue'
+import {defineComponent, RendererElement} from 'vue'
 import { MenuList } from '@/model/Store.ts'
 import {ElMenu, ElMenuItem, ElMenuItemGroup, ElSubmenu} from 'element-plus'
 
@@ -32,11 +32,11 @@ export default defineComponent({
 	},
 	render() {
 		const that = this
-		const children: any[] = []
-		function menuRender(item: MenuList): VNode {
-			let subNode: any
+		const children: RendererElement[] = []
+		function menuRender(item: MenuList): RendererElement {
+			let subNode: RendererElement
 			if (item.children && item.children.length > 0) {
-					let menuItemNodes = [] as any[]
+					let menuItemNodes = [] as RendererElement[]
 					menuItemNodes =  item.children.map( i => {
 						if (i.children && i.children.length > 0) {
 								return menuRender(i)
