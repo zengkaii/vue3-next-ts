@@ -1,13 +1,13 @@
 <template lang="pug">
 .main-container
 	.container
-			router-view
+		router-view
 </template>
 <script lang="ts">
-    import {defineComponent} from 'vue'
-    export default defineComponent({
-			name : 'MainContent'
-		})
+	import {defineComponent} from 'vue'
+	export default defineComponent({
+		name : 'MainContent'
+	})
 </script>
 <style lang="less" scoped>
 @import '../../assets/less/theme.less';
