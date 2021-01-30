@@ -15,7 +15,7 @@
         components: {
             TsMenu
         },
-        setup(props) {
+        setup() {
             const store = useStore()
             const router = useRouter()
             const route = useRoute()
