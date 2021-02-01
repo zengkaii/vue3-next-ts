@@ -12,7 +12,6 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
-// @import '../../assets/less/theme.less';
 .header-container {
   user-select: none;
   display: flex;

@@ -7,74 +7,82 @@ const store = createStore({
     menuList: [
       {
         id: 1,
-        label: '管理',
+        label: '菜单',
         type: 'bar',
         name: 'manage',
         children: [
           {
             parentId: 1,
             id: 4,
-            label: '看板',
-            path: '/dashboard',
+            label: '菜单配置',
+            path: '/menu-page',
             type: 'menu',
-            name: 'dashboard'
+            name: 'menu-page'
+          },
+          {
+            parentId: 1,
+            id: 11,
+            label: '表单',
+            path: '/form',
+            type: 'menu',
+            name: 'form'
           },
           {
             parentId: 1,
             id: 10,
-            label: '菜单',
-            path: '/menu-page',
+            label: '表格一',
+            path: '/table-one',
             type: 'menu',
-            name: 'menu'
+            name: 'table-one'
           },
-          {
-            parentId: 1,
-            id: 8,
-            label: '管理',
-            type: 'bar',
-            name: '',
-            children: [
-                {
-                    parentId: 8,
-                    id: 9,
-                    label: '看板',
-                    path: '/dashboard',
-                    type: 'menu',
-                    name: ''
-                },
-                {
-                    id: 7,
-                    label: '菜单',
-                    path: '/menu-page',
-                    type: 'menu',
-                    name: ''
-                }
-            ]
-          }
+          // {
+          //   parentId: 1,
+          //   id: 8,
+          //   label: '',
+          //   type: 'bar',
+          //   name: '',
+          //   children: [
+          //       {
+          //           parentId: 8,
+          //           id: 9,
+          //           label: '看板',
+          //           path: '/dashboard',
+          //           type: 'menu',
+          //           name: ''
+          //       },
+          //       {
+          //           id: 7,
+          //           label: '菜单',
+          //           path: '/menu-page',
+          //           type: 'menu',
+          //           name: ''
+          //       }
+          //   ]
+          // }
         ]
       },
-      {
-        id: 2,
-        label: '管理',
-        type: 'bar',
-        name: '',
-        children: [
-          {
-            id: 5,
-            label: '看板',
-            path: '/dashboard',
-            type: 'menu',
-            name: ''
-          },
-          {
-            id: 6,
-            label: '菜单',
-            path: '/menu-page',
-            type: 'menu',
-            name: ''
-          }
-        ]
-      }
+      // {
+      //   id: 2,
+      //   label: '管理',
+      //   type: 'bar',
+      //   name: '',
+      //   children: [
+      //     {
+      //       id: 5,
+      //       label: '看板',
+      //       path: '/dashboard',
+      //       type: 'menu',
+      //       name: ''
+      //     },
+      //     {
+      //       id: 6,
+      //       label: '菜单',
+      //       path: '/menu-page',
+      //       type: 'menu',
+      //       name: ''
+      //     }
+      //   ]
+      // }
     ],
     dynamicTags: [] as MenuList[]
   },

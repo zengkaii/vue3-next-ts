@@ -43,7 +43,6 @@
 </script>
 <style lang="less" scoped>
 .aside-container{
-	// width: 201px;
 	overflow: hidden;
 	.el-menu{
 		text-align: left;
@@ -51,9 +50,6 @@
 	.aside-search{
 		/deep/ .el-submenu .el-menu-item{
 				min-width: 199px;
-		}
-		/deep/ .el-submenu__title{
-			// text-align: left;
 		}
 	}
 }

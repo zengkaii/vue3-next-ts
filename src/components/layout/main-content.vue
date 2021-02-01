@@ -1,7 +1,6 @@
 <template lang="pug">
 .main-container
-	.container
-		router-view
+	router-view
 </template>
 <script lang="ts">
 	import {defineComponent} from 'vue'
@@ -10,7 +9,6 @@
 	})
 </script>
 <style lang="less" scoped>
-// @import '../../assets/less/theme.less';
 .main-container{
 	.tag-row{
 		overflow-y: scroll;

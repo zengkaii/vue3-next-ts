@@ -2,6 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/index'
 import store from './store'
-import ElementPlus from 'element-plus'
+import {initElementUi} from './plugins/ElementPlus'
 import 'element-plus/lib/theme-chalk/index.css'
-createApp(App).use(store).use(router).use(ElementPlus).mount('#app')
+import 'dayjs/locale/zh-cn'
+
+const app = createApp(App)
+app.use(store).use(router)
+initElementUi(app)
+app.mount('#app')
