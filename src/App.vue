@@ -5,7 +5,7 @@
 </template>
 
 <style>
-@import './assets/less/theme.less';
+/* @import './assets/less/theme.less'; */
 html *{
   margin: 0;
   padding: 0;

@@ -10,7 +10,7 @@
 	})
 </script>
 <style lang="less" scoped>
-@import '../../assets/less/theme.less';
+// @import '../../assets/less/theme.less';
 .main-container{
 	.tag-row{
 		overflow-y: scroll;
