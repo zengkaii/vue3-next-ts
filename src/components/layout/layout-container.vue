@@ -36,7 +36,6 @@ div
 	background: @second-color;
 }
 .el-aside {
-	// height: 92vh;
 	background-color: @second-color;
 	color: @light-color;
 	&::-webkit-scrollbar{
@@ -65,12 +64,8 @@ body > .el-container {
 }
 	.view-container{
 		overflow-y: auto;
-		// overflow-x: hidden;
-		// width: 100%;
 		flex: 1;
 		height: 100%;
-		&::-webkit-scrollbar{
-		}
 	}
 
 </style>
