@@ -1,86 +1,80 @@
 import { createStore } from "vuex";
 import Types from './types'
-import {App} from "vue";
 import { MenuList } from '@/model/Store.ts'
-// export interface StoreState {
-//   isLogin: boolean
-//   menuList: MenuList[],
-//   dynamicTags: MenuList[]
-// }
 const store = createStore({
   state: {
     isLogin: false,
     menuList: [
-        {
-            id: 1,
-            label: '管理',
-            type: 'bar',
-            name: 'manage',
-            children: [
-                {
-                    parentId: 1,
-                    id: 4,
-                    label: '看板',
-                    path: '/dashboard',
-                    type: 'menu',
-                    name: 'dashboard'
-                },
-                {
-                    parentId: 1,
-                    id: 10,
-                    label: '菜单',
-                    path: '/menu-page',
-                    type: 'menu',
-                    name: 'menu'
-                },
-                {
-                    parentId: 1,
-                    id: 8,
-                    label: '管理',
-                    type: 'bar',
-                    name: '',
-                    children: [
-                        {
-                            parentId: 8,
-                            id: 9,
-                            label: '看板',
-                            path: '/dashboard',
-                            type: 'menu',
-                            name: ''
-                        },
-                        {
-                            id: 7,
-                            label: '菜单',
-                            path: '/menu-page',
-                            type: 'menu',
-                            name: ''
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            id: 2,
+      {
+        id: 1,
+        label: '管理',
+        type: 'bar',
+        name: 'manage',
+        children: [
+          {
+            parentId: 1,
+            id: 4,
+            label: '看板',
+            path: '/dashboard',
+            type: 'menu',
+            name: 'dashboard'
+          },
+          {
+            parentId: 1,
+            id: 10,
+            label: '菜单',
+            path: '/menu-page',
+            type: 'menu',
+            name: 'menu'
+          },
+          {
+            parentId: 1,
+            id: 8,
             label: '管理',
             type: 'bar',
             name: '',
             children: [
                 {
-                    id: 5,
+                    parentId: 8,
+                    id: 9,
                     label: '看板',
                     path: '/dashboard',
                     type: 'menu',
                     name: ''
                 },
                 {
-                    id: 6,
+                    id: 7,
                     label: '菜单',
                     path: '/menu-page',
                     type: 'menu',
                     name: ''
                 }
             ]
-        }
+          }
+        ]
+      },
+      {
+        id: 2,
+        label: '管理',
+        type: 'bar',
+        name: '',
+        children: [
+          {
+            id: 5,
+            label: '看板',
+            path: '/dashboard',
+            type: 'menu',
+            name: ''
+          },
+          {
+            id: 6,
+            label: '菜单',
+            path: '/menu-page',
+            type: 'menu',
+            name: ''
+          }
+        ]
+      }
     ],
     dynamicTags: [] as MenuList[]
   },
