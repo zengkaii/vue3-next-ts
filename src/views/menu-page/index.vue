@@ -36,7 +36,7 @@ div.menu-page
   import {menuList, saveMenu, deleteMenu} from '@/api/menuApi'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { MenuList } from '@/model/Store.ts'
-  export interface Form {
+  interface Form {
     label: string
     path?: string,
     type: string,
