@@ -1,5 +1,5 @@
 <template lang="pug">
-div.menu-page
+.container
   el-row(:gutter="88")
     el-col(:span="8")
       el-button(@click="createNewObj()") 新增一级目录

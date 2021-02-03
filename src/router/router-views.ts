@@ -19,6 +19,11 @@ const routerChildren = [
     path: '/form',
     name: 'form',
     component: () => import('@/views/form/index.vue')
+  },
+  {
+    path: '/dialog',
+    name: 'dialog',
+    component: () => import('@/views/dialog/index.vue')
   }
 ] as RouteRecordRaw[]
 

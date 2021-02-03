@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
-  el-row()
-    el-col(:span='12')
+  el-row(:gutter="72")
+    el-col(:span="12")
       el-form(:model="form" label-width="100px" label-position='left')
         el-form-item(label='单选框')
           el-radio-group(v-model="form.radio")
@@ -12,14 +12,13 @@
           el-input(v-model="form.input")
         el-form-item(label='输入框-组件')
           inputComponent(v-model="form.componentInput")
-    el-col(:span='12')
-    el-button(@click="dialogShow = true") 点我
-  dialogComponent(v-model="dialogShow" title="dialogComponent" v-if="dialogShow")
+    el-col(:span="12")
+      .result
+        span {{form}}
 </template>
 <script lang="ts">
   import inputComponent from './input-component.vue'
-  import dialogComponent from './dialog-component.vue'
-  import { defineComponent, ref,  } from 'vue'
+  import { defineComponent, ref } from 'vue'
   interface FormType  {
     radio: string | number,
     input: string,
@@ -27,17 +26,15 @@
   }
   export default defineComponent({
     name: 'Form',
-    components: {inputComponent, dialogComponent},
+    components: {inputComponent},
     setup() {
       const form = ref<FormType>({
         radio: '',
         input: '',
         componentInput: ''
       })
-      const dialogShow = ref<boolean>(false)
       return {
-        form,
-        dialogShow
+        form
       }
     }
   })

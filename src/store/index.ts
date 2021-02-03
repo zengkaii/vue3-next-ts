@@ -21,7 +21,7 @@ const store = createStore({
           },
           {
             parentId: 1,
-            id: 11,
+            id: 10,
             label: '表单',
             path: '/form',
             type: 'menu',
@@ -29,60 +29,22 @@ const store = createStore({
           },
           {
             parentId: 1,
-            id: 10,
+            id: 11,
             label: '表格一',
             path: '/table-one',
             type: 'menu',
             name: 'table-one'
           },
-          // {
-          //   parentId: 1,
-          //   id: 8,
-          //   label: '',
-          //   type: 'bar',
-          //   name: '',
-          //   children: [
-          //       {
-          //           parentId: 8,
-          //           id: 9,
-          //           label: '看板',
-          //           path: '/dashboard',
-          //           type: 'menu',
-          //           name: ''
-          //       },
-          //       {
-          //           id: 7,
-          //           label: '菜单',
-          //           path: '/menu-page',
-          //           type: 'menu',
-          //           name: ''
-          //       }
-          //   ]
-          // }
+          {
+            parentId: 1,
+            id: 12,
+            label: '弹窗',
+            path: '/dialog',
+            type: 'menu',
+            name: 'dialog'
+          },
         ]
       },
-      // {
-      //   id: 2,
-      //   label: '管理',
-      //   type: 'bar',
-      //   name: '',
-      //   children: [
-      //     {
-      //       id: 5,
-      //       label: '看板',
-      //       path: '/dashboard',
-      //       type: 'menu',
-      //       name: ''
-      //     },
-      //     {
-      //       id: 6,
-      //       label: '菜单',
-      //       path: '/menu-page',
-      //       type: 'menu',
-      //       name: ''
-      //     }
-      //   ]
-      // }
     ],
     dynamicTags: [] as MenuList[]
   },
