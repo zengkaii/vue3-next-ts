@@ -7,6 +7,7 @@ el-dialog.dialog-comntainer(v-on="$attrs")
   import { defineComponent,  } from 'vue'
   export default defineComponent({
     name: 'dialogComponent',
+    emits: ['update:modelValue'],
     setup(props, context) {
       function closeHandle() {
           context.emit('update:modelValue', false)
