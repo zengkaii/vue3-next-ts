@@ -1,0 +1,1 @@
+export const GD_KEY = 'aa5b58f33ecef18ffb99d6e427f4f545'

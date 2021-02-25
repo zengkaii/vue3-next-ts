@@ -12,6 +12,7 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    'no-debugger': 0,
     "vue/no-unused-components": "off",
     'vue/no-unused-vars': 'off',
     'vue/no-v-for-template-key-on-child': 'off',

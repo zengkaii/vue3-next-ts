@@ -25,6 +25,9 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.resolve.alias.set('@', resolve('src'))
+    config["externals"] = {
+      AMap: "AMap" // 高德地图配置
+    }
   },
   pluginOptions:{
 		"style-resources-loader": {

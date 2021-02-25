@@ -24,7 +24,17 @@ const routerChildren = [
     path: '/dialog',
     name: 'dialog',
     component: () => import('@/views/dialog/index.vue')
-  }
+  },
+  {
+    path: '/echarts',
+    name: 'echarts',
+    component: () => import('@/views/echarts/index.vue')
+  },
+  {
+    path: '/gdMap',
+    name: 'gdMap',
+    component: () => import('@/views/gdMap/index.vue')
+  },
 ] as RouteRecordRaw[]
 
 export default routerChildren

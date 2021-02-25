@@ -43,6 +43,22 @@ const store = createStore({
             type: 'menu',
             name: 'dialog'
           },
+          {
+            parentId: 1,
+            id: 13,
+            label: '图表',
+            path: '/echarts',
+            type: 'menu',
+            name: 'echarts'
+          },
+          {
+            parentId: 1,
+            id: 14,
+            label: '地图',
+            path: '/gdMap',
+            type: 'menu',
+            name: 'gdMap'
+          },
         ]
       },
     ],

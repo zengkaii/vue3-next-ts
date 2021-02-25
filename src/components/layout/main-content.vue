@@ -10,6 +10,7 @@
 </script>
 <style lang="less" scoped>
 .main-container{
+	height: 100%;
 	.tag-row{
 		overflow-y: scroll;
 		height: 30px;
