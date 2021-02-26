@@ -59,6 +59,14 @@ const store = createStore({
             type: 'menu',
             name: 'gdMap'
           },
+          {
+            parentId: 1,
+            id: 15,
+            label: 'markdown',
+            path: '/markdown',
+            type: 'menu',
+            name: 'markdown'
+          },
         ]
       },
     ],

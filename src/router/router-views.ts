@@ -35,6 +35,11 @@ const routerChildren = [
     name: 'gdMap',
     component: () => import('@/views/gdMap/index.vue')
   },
+  {
+    path: '/markdown',
+    name: 'markdown',
+    component: () => import('@/views/markdown/index.vue')
+  },
 ] as RouteRecordRaw[]
 
 export default routerChildren
