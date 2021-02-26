@@ -1,5 +1,5 @@
 <template lang="pug">
-.main-container
+#main-container
 	router-view
 </template>
 <script lang="ts">
@@ -9,7 +9,7 @@
 	})
 </script>
 <style lang="less" scoped>
-.main-container{
+#main-container{
 	height: 100%;
 	.tag-row{
 		overflow-y: scroll;
@@ -29,7 +29,8 @@
 		background: @waring-color;
 	}
 	.container{
-		padding: 40px 20px;
+		background-color: #f9f9f9;
+		padding: 0px 20px;
 	}
 }   
 </style>
