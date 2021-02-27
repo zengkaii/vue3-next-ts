@@ -66,7 +66,7 @@
 </script>
 <style lang="less" scoped>
 .table-container{ 
-  padding-bottom: 80px!important;
+  // padding-bottom: 40px!important;
 }
 .filter-content{
   background-color: #fff;
@@ -100,8 +100,8 @@
 .fiexd-pagination{
   position: fixed;
   bottom: 0;
-  left: 210px;
-  right: 15px;
+  left: 200px;
+  right: 0px;
   // width: 100%;
   background-color: #f8f8fa;
   padding: 20px 10px;

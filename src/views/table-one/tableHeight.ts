@@ -35,12 +35,10 @@ export default function (): any {
     if (searchElm.value) {
       searchHeight.value = getElmHeight(searchElm.value)
     }
-
     //                                        searchHeight + 分页 + (herder+tag)  + otherElmHeight
     maxTableHeight.value =
       document.body.clientHeight -
-      (searchHeight.value  + 85 + 83 + otherElmHeight.value)
-    
+      (searchHeight.value  + 85 + 35 + otherElmHeight.value)
   }
 
   function initPageHeight() {
