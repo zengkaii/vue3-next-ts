@@ -5,19 +5,14 @@
 </template>
 <script lang="ts">
   import dialogComponent from './dialog-component.vue'
-  import { defineComponent, ref, nextTick  } from 'vue'
+  import { defineComponent, ref  } from 'vue'
   export default defineComponent({
-    name: 'Dialog',
+    name: 'MyDialog',
     components: {dialogComponent},
     setup() {
       const dialogShow = ref<boolean>(false)
-      const refButton = ref<any>(null)
-      nextTick(() => {
-        console.log(refButton.value.handleClick)
-      })
       return {
-        dialogShow,
-        refButton
+        dialogShow
       }
     }
   })
