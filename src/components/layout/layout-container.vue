@@ -1,8 +1,8 @@
 <template lang="pug">
-div
+div.flex-content
 	el-header
 		HeaderContent
-	el-container(style="height: 92vh; overflow: hidden;")
+	el-container(style="flex:1;")
 		el-aside(width="200px")
 			AsideMenu
 		.view-container
@@ -23,6 +23,11 @@ div
 	})
 </script>
 <style lang="less" scoped>
+.flex-content{
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
 .el-header, .el-footer {
 	background-color: @light-color;
 	color: @font-dark-color;
@@ -30,8 +35,8 @@ div
 	border-bottom: 1px solid @border-color;
 }
 .el-header{
-	height: 8vh!important;
-	line-height: 8vh;
+	height: 65px!important;
+	line-height: 65px;
 	// background: linear-gradient(to right, @dark-color , @third-color);
 	background: @second-color;
 }

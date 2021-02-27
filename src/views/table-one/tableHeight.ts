@@ -1,4 +1,4 @@
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
 
 export default function (): any {
   const iframeHtml = ref<HTMLElement | any>(null)
@@ -8,7 +8,6 @@ export default function (): any {
   const otherElmHeight = ref<number>(0)
   const searchHeight = ref<number>(0)
   const searchElm = ref<HTMLElement | any>()
-  const headerElm = ref<HTMLElement | any>()
   function getElmHeight(elm:any) {
     const computedStyle =  getComputedStyle(elm, null) || elm.currentStyle
     const marginBottom = Number(
@@ -20,7 +19,7 @@ export default function (): any {
 
   function setFilterForm() {
     showAllFilter.value = !showAllFilter.value
-      nextTick(() => {
+      nextTick().then(() => {
         winSize()
       })
   }
@@ -38,15 +37,14 @@ export default function (): any {
     }
 
     //                                        searchHeight + 分页 + (herder+tag)  + otherElmHeight
-    console.log(headerElm.value.clientHeight, 'headerElm.value')
     maxTableHeight.value =
       document.body.clientHeight -
-      (searchHeight.value  + headerElm.value.clientHeight + 83 + otherElmHeight.value)
+      (searchHeight.value  + 85 + 83 + otherElmHeight.value)
     
   }
 
   function initPageHeight() {
-    __winSize()
+    winSize()
     const appMain = document.querySelector('#main-container')
     iframeHtml.value = document.createElement('iframe')
     iframeHtml.value.style.cssText = `
@@ -64,18 +62,10 @@ export default function (): any {
       appMain.appendChild(iframeHtml.value)
     }
     const _iframeHtml = iframeHtml.value.contentWindow || iframeHtml.value
-    _iframeHtml.addEventListener('resize', __winSize)
+    _iframeHtml.addEventListener('resize', winSize)
   }
-  function  __winSize() {
-    nextTick(() => {
-      headerElm.value = document.querySelector('.header-container')
-      console.log(headerElm.value.clientHeight)
-      winSize()
-    })
-  }
+  
   function getScrollDire(e) {
-    console.log('getScrollDire')
-    console.log('getScrollDire', tableDom.value)
     const scrollTop = tableDom.value.scrollTop
     // // 有刚好把筛选条件隐藏了就表格高度刚好的情况，然后scrollTop刚好变成0了，加个判断
     const tableBodyWrapperHeight = tableDom.value.clientHeight
@@ -84,49 +74,49 @@ export default function (): any {
     if(elTableBody) {
       tableBodyHeight = elTableBody.clientHeight
     }
-    console.log(1)
     const isLessThanTable = maxTableHeight.value + (searchHeight.value + otherElmHeight.value) > tableBodyHeight
-    console.log(e.wheelDelta, 'e.wheelDelta')
-    console.log(tableBodyWrapperHeight, tableBodyHeight)
     if (
       e.wheelDelta < 0 &&
       showAllFilter.value &&
       tableBodyWrapperHeight < tableBodyHeight
     ) {
       showAllFilter.value = false
-      nextTick(() => {
-        __winSize()
+      nextTick().then(() => {
+        winSize()
       })
     }
-    console.log(2)
-    console.log(scrollTop, 'scrollTop')
     if (scrollTop === 0 && !showAllFilter.value) {
-      console.log(isLessThanTable, 'isLessThanTable')
       if (!isLessThanTable) {
         showAllFilter.value = true
-        nextTick(() => {
-          __winSize()
+        nextTick().then(() => {
+          winSize()
         })
       } else {
         if (e.wheelDelta > 0) {
           showAllFilter.value = true
-          nextTick(() => {
-            __winSize()
+          nextTick().then(() => {
+            winSize()
           })
         }
       }
     }
   }
-  function _initPage() {
-    nextTick(() => {
-      searchElm.value = document.querySelector('.filter-content')
-      headerElm.value = document.querySelector('.header-container')
-      tableDom.value = document.querySelector('.el-table__body-wrapper')
-      tableDom.value && tableDom.value.addEventListener('mousewheel', getScrollDire, true)
-      initPageHeight()
-    })
+  async function  _initPage() {
+    await nextTick()
+    searchElm.value = document.querySelector('.filter-content')
+    tableDom.value = document.querySelector('.el-table__body-wrapper')
+    tableDom.value && tableDom.value.addEventListener('mousewheel', getScrollDire, true)
+    initPageHeight()
   }
 
+  onMounted(() => {
+    _initPage()
+  })
+  onBeforeUnmount(() => {
+    tableDom.value && tableDom.value.removeEventListener('mousewheel', getScrollDire, true)
+    iframeHtml.value && iframeHtml.value.removeEventListener('mousewheel', winSize, true)
+    iframeHtml.value.remove()
+  })
   return {
     iframeHtml,
     showAllFilter,

@@ -32,11 +32,11 @@
 </template>
 <script lang="ts">
   import tableHeight from './tableHeight'
-  import { defineComponent, ref, onMounted } from 'vue'
+  import { defineComponent, ref } from 'vue'
   export default defineComponent({
     name: 'TableOne',
     setup() {
-      const { showAllFilter, maxTableHeight, setFilterForm, _initPage } = tableHeight()
+      const { showAllFilter, maxTableHeight, setFilterForm } = tableHeight()
       const tableData = ref<any>([])
       const currentPage = ref<number>(1)
       const pageSize = ref<number>(10)
@@ -51,9 +51,6 @@
       function handleCurrentChange(page: number) {
         currentPage.value = page
       }
-      onMounted(() => {
-        _initPage()
-      })
       return {
         showAllFilter,
         maxTableHeight,
@@ -78,6 +75,7 @@
   border-radius: 5px;
   box-shadow: 0 0 25px rgba(100, 100, 100, 0.17);
   position: relative;
+  transition: 0.3s all;
   .more-label {
     position: absolute;
     bottom: 0;
