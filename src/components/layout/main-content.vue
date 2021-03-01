@@ -1,16 +1,29 @@
 <template lang="pug">
 #main-container
-	router-view
+	router-view(:key="key" v-slot="{ Component }")
+		transition(name="zoom-fade" mode="out-in")
+			component(:is="Component")
 </template>
 <script lang="ts">
-	import {defineComponent} from 'vue'
+	import { defineComponent, computed } from 'vue'
+	import { useRoute } from "vue-router"
 	export default defineComponent({
-		name : 'MainContent'
+		name : 'MainContent',
+		setup() {
+			const route = useRoute()
+			const key = computed(() => {
+				return route.fullPath
+			})
+			return {
+				key
+			}
+		}
 	})
 </script>
 <style lang="less" scoped>
 #main-container{
 	height: 100%;
+	background-color: #f8f8fa;
 	.tag-row{
 		overflow-y: scroll;
 		height: 30px;
@@ -29,7 +42,10 @@
 		background: @waring-color;
 	}
 	.container{
-		background-color: #f9f9f9;
+		// background-color: #f9f9f9;
+		padding: 20px 20px;
+	}
+	.table-container{ 
 		padding: 0px 20px;
 	}
 }   

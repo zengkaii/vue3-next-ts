@@ -1,5 +1,5 @@
 <template lang="pug">
-.container.table-container
+.table-container
   div.filter-content(ref="searchElm" :style="showAllFilter ? '' : 'padding:12px 10px'")
     div.more-label(@click="setFilterForm()")
       span(v-show="!showAllFilter")
@@ -20,9 +20,16 @@
       el-form-item(label="条件五：")
         el-input
   div.table-content
-    el-table(:data="tableData"  style="width: 100%" border :max-height="maxTableHeight"  )
-      el-table-column(prop='one' label='序号' type="index" width='50px')
-      el-table-column(prop='name' label='姓名' )
+    el-table(:data="tableData"  style="width: 100%" border :max-height="maxTableHeight")
+      el-table-column(prop="one" label="序号" type="index" width="50px" align="center")
+      el-table-column(prop="name" label="姓名" align="center")
+      el-table-column(prop="engName" label="英文名" align="center")
+      el-table-column(prop="phone" label="手机号码" align="center")
+      el-table-column(label="操作" align="center")
+        template(#default="scope")
+          el-button(type="primary") 编辑
+          el-button(type="success") 查看
+          el-button(type="danger") 删除
   div.fiexd-pagination
     el-pagination(@size-change="handleSizeChange" @current-change="handleCurrentChange" 
         :currentPage="currentPage"
@@ -65,9 +72,6 @@
   })
 </script>
 <style lang="less" scoped>
-.table-container{ 
-  // padding-bottom: 40px!important;
-}
 .filter-content{
   background-color: #fff;
   padding: 20px 10px;
@@ -97,12 +101,13 @@
     }
   }
 }
+
 .fiexd-pagination{
   position: fixed;
   bottom: 0;
-  left: 200px;
-  right: 0px;
-  // width: 100%;
+  // left: 200px;
+  // right: 0px;
+  width: 100%;
   background-color: #f8f8fa;
   padding: 20px 10px;
   z-index: 20;

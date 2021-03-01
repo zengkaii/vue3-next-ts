@@ -1,4 +1,4 @@
-import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { ref, nextTick, onMounted, onUnmounted } from 'vue'
 
 export default function (): any {
   const iframeHtml = ref<HTMLElement | any>(null)
@@ -110,10 +110,11 @@ export default function (): any {
   onMounted(() => {
     _initPage()
   })
-  onBeforeUnmount(() => {
+  onUnmounted(() => {
     tableDom.value && tableDom.value.removeEventListener('mousewheel', getScrollDire, true)
-    iframeHtml.value && iframeHtml.value.removeEventListener('mousewheel', winSize, true)
+    iframeHtml.value && iframeHtml.value.removeEventListener('resize', winSize, true)
     iframeHtml.value.remove()
+    iframeHtml.value && iframeHtml.value.parentElement &&iframeHtml.value.parentElement.removeChild(iframeHtml.value)
   })
   return {
     iframeHtml,

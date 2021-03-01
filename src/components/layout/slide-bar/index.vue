@@ -1,18 +1,15 @@
 <template lang="pug">
 .aside-container
-	TsMenu(:menuList="menuList" :backgroundColor="'#545c64'" :textColor="'#fff'" :activeTextColor="'#ffd04b'" @menuClick="menuClick")
+	el-menu(:menuList="menuList" :backgroundColor="'#545c64'" :textColor="'#fff'" :activeTextColor="'#ffd04b'" @menuClick="menuClick")
+        el-submenu
 </template>
 <script lang="ts">
-	import { defineComponent, computed, nextTick } from 'vue'
+	import { defineComponent, computed } from 'vue'
 	import {useRouter, useRoute} from "vue-router";
 	import { MenuList } from '@/model/Store.ts'
-	import TsMenu from './ts-menu'
 	import {useStore} from "vuex";
 	export default defineComponent({
 		name : 'AsideMenu',
-		components: {
-			TsMenu
-		},
 		setup() {
 			const store = useStore()
 			const router = useRouter()
@@ -31,9 +28,7 @@
 				if (path === currentPath) {
 					return
 				}
-				nextTick().then(() => {
-					router.push(path)
-				})
+				router.push(path)
 			}
 
 			return {

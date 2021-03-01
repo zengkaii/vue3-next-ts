@@ -40,6 +40,11 @@ const routerChildren = [
     name: 'markdown',
     component: () => import('@/views/markdown/index.vue')
   },
+  {
+    path: '/drawer',
+    name: 'drawer',
+    component: () => import('@/views/drawer/index.vue')
+  },
 ] as RouteRecordRaw[]
 
 export default routerChildren

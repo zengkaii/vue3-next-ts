@@ -69,6 +69,7 @@ body > .el-container {
 }
 	.view-container{
 		overflow-y: auto;
+		overflow-x: hidden;
 		flex: 1;
 		height: 100%;
 	}

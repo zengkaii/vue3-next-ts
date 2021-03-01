@@ -67,6 +67,14 @@ const store = createStore({
             type: 'menu',
             name: 'markdown'
           },
+          {
+            parentId: 1,
+            id: 16,
+            label: '抽屉',
+            path: '/drawer',
+            type: 'menu',
+            name: 'drawer'
+          },
         ]
       },
     ],
