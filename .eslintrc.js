@@ -20,5 +20,6 @@ module.exports = {
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/no-this-alias': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    "comma-dangle": [2, "never"]
   }
 }
