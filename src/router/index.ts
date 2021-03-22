@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import RouterViews from './router-views'
 import LayoutContainer from '../components/layout/layout-container.vue'
 
@@ -9,10 +9,10 @@ export const routes: Array<RouteRecordRaw> = [
     redirect: '/home',
     component: LayoutContainer,
     meta: {
-        title: '首页'
+      title: '首页'
     },
     children: RouterViews
-  },
+  }
 ]
 
 const router = createRouter({

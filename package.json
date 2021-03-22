@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@kangc/v-md-editor": "^2.2.1",
+    "@vant/lazyload": "^1.0.4",
     "core-js": "^3.6.5",
     "echarts": "^5.0.2",
     "element-plus": "^1.0.2-beta.30",

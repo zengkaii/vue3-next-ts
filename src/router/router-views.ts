@@ -44,7 +44,7 @@ const routerChildren = [
     path: '/drawer',
     name: 'drawer',
     component: () => import('@/views/drawer/index.vue')
-  },
+  }
 ] as RouteRecordRaw[]
 
 export default routerChildren

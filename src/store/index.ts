@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import Types from './types'
-import { MenuList } from '@/model/Store.ts'
+import { MenuList } from '@/model/Store'
 const store = createStore({
   state: {
     isLogin: false,
@@ -74,9 +74,9 @@ const store = createStore({
             path: '/drawer',
             type: 'menu',
             name: 'drawer'
-          },
+          }
         ]
-      },
+      }
     ],
     dynamicTags: [] as MenuList[]
   },
@@ -101,17 +101,17 @@ const store = createStore({
   },
   actions: {
     [Types.SET_DYNAMIC_TAGS]({ commit }, dynamicTags) {
-    console.log(Types.SET_DYNAMIC_TAGS)
-    commit(Types.SET_DYNAMIC_TAGS, dynamicTags)
+      console.log(Types.SET_DYNAMIC_TAGS)
+      commit(Types.SET_DYNAMIC_TAGS, dynamicTags)
     },
     [Types.REMOVE_DYNAMIC_TAGS]({ commit }, dynamicTags) {
-    console.log(Types.REMOVE_DYNAMIC_TAGS)
-    commit(Types.REMOVE_DYNAMIC_TAGS, dynamicTags)
+      console.log(Types.REMOVE_DYNAMIC_TAGS)
+      commit(Types.REMOVE_DYNAMIC_TAGS, dynamicTags)
     },
     [Types.LOGIN]() {
-    console.log(Types.LOGIN)
-    this.commit(Types.LOGIN, true)
-    },
+      console.log(Types.LOGIN)
+      this.commit(Types.LOGIN, true)
+    }
   }
 })
 

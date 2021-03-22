@@ -27,17 +27,17 @@ Superagent.serialize['application/x-www-form-urlencoded'] = serialize
 
 
 export default {
-    post(url: string, params: unknown, header = {}) : Promise<any> {
+    post(url: string, params: unknown, header = {}): Promise<any> {
         return Superagent.post(url).type('form').send(params).set(header)
     },
     postJson(url: string, params: unknown, header = {}): Promise<any> {
         return Superagent.post(url).send(params).accept('application/json').set(header)
     },
-    get(url: string, params: unknown, header = {}) : Promise<any>{
+    get(url: string, params: unknown, header = {}): Promise<any> {
         let buildGet = Superagent.get(url)
         object2KeyValueParnter(params).forEach(param => {
             buildGet = buildGet.query(param)
         })
         return buildGet.set(header)
-    },
+    }
 }

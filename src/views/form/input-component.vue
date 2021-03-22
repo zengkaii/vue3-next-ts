@@ -8,13 +8,13 @@
     name: 'inputComponent',
     
     model: {
-      prop: 'text',
+      prop: 'text'
     },
     props: {
       modelValue: {
         type: String,
         default: ''
-      },
+      }
     },
     emits: ['update:modelValue'],
     setup(props, context) {
@@ -27,7 +27,7 @@
         }
       })
       return {
-        message,
+        message
       }
     }
   })
