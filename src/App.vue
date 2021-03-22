@@ -4,10 +4,10 @@
 </template>
 
 <style>
-@import './assets/less/reset.less';
-@import './assets/less/global.less';
-@import './assets/less/element-custom.less';
-html *{
+@import "./assets/less/reset.less";
+@import "./assets/less/global.less";
+@import "./assets/less/element-custom.less";
+html * {
   margin: 0;
   padding: 0;
 }

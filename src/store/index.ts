@@ -13,6 +13,14 @@ const store = createStore({
         children: [
           {
             parentId: 1,
+            id: 2,
+            label: '首页',
+            path: '/home',
+            type: 'menu',
+            name: 'home'
+          },
+          {
+            parentId: 1,
             id: 4,
             label: '菜单配置',
             path: '/menu-page',

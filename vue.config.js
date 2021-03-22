@@ -37,7 +37,7 @@ module.exports = {
 				path.resolve(__dirname, "./src/assets/less/theme.less")
 			]
 		}
-  },
+  }
   // css: {
   //   requireModuleExtension: true, // 是否开启CSSmodule并保留xxx.module.css后缀
   //   loaderOptions: {

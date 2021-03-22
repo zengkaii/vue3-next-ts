@@ -1,14 +1,17 @@
 <template lang="pug">
 .table-container
-  div.filter-content(ref="searchElm" :style="showAllFilter ? '' : 'padding:12px 10px'")
-    div.more-label(@click="setFilterForm()")
+  .filter-content(
+    ref="searchElm",
+    :style="showAllFilter ? '' : 'padding:12px 10px'"
+  )
+    .more-label(@click="setFilterForm()")
       span(v-show="!showAllFilter")
         i.el-icon-caret-bottom
         | 展开筛选
       span(v-show="showAllFilter")
         i.el-icon-caret-top
         | 收起
-    el-form(inline v-show="showAllFilter")
+    el-form(inline, v-show="showAllFilter")
       el-form-item(label="条件一：")
         el-input
       el-form-item(label="条件二：")
@@ -19,60 +22,80 @@
         el-input
       el-form-item(label="条件五：")
         el-input
-  div.table-content
-    el-table(:data="tableData"  style="width: 100%" border :max-height="maxTableHeight")
-      el-table-column(prop="one" label="序号" type="index" width="50px" align="center")
-      el-table-column(prop="name" label="姓名" align="center")
-      el-table-column(prop="engName" label="英文名" align="center")
-      el-table-column(prop="phone" label="手机号码" align="center")
-      el-table-column(label="操作" align="center")
+  .table-content
+    el-table(
+      :data="tableData",
+      style="width: 100%",
+      border,
+      :max-height="maxTableHeight"
+    )
+      el-table-column(
+        prop="one",
+        label="序号",
+        type="index",
+        width="50px",
+        align="center"
+      )
+      el-table-column(prop="name", label="姓名", align="center")
+      el-table-column(prop="engName", label="英文名", align="center")
+      el-table-column(prop="phone", label="手机号码", align="center")
+      el-table-column(label="操作", align="center")
         template(#default="scope")
           el-button(type="primary") 编辑
           el-button(type="success") 查看
           el-button(type="danger") 删除
-  div.fiexd-pagination
-    el-pagination(@size-change="handleSizeChange" @current-change="handleCurrentChange" 
-        :currentPage="currentPage"
-        :page-size="pageSize"
-        layout="total, sizes, prev, pager, next"
-        :total="1000")
+  .fiexd-pagination
+    el-pagination(
+      @size-change="handleSizeChange",
+      @current-change="handleCurrentChange",
+      :currentPage="currentPage",
+      :page-size="pageSize",
+      layout="total, sizes, prev, pager, next",
+      :total="1000"
+    )
 </template>
 <script lang="ts">
-  import tableHeight from './tableHeight'
-  import { defineComponent, ref } from 'vue'
-  export default defineComponent({
-    name: 'TableOne',
-    setup() {
-      const { showAllFilter, maxTableHeight, setFilterForm } = tableHeight()
-      const tableData = ref<any>([])
-      const currentPage = ref<number>(1)
-      const pageSize = ref<number>(10)
-      for (let i = 1; i< 100; i++ ) {
-        tableData.value.push({})
-      }
-
-      function handleSizeChange(size: number) {
-        pageSize.value = size
-      }
-
-      function handleCurrentChange(page: number) {
-        currentPage.value = page
-      }
-      return {
-        showAllFilter,
-        maxTableHeight,
-        setFilterForm,
-        tableData,
-        currentPage,
-        pageSize,
-        handleSizeChange,
-        handleCurrentChange
-      }
+import tableHeight from "./tableHeight"
+import { defineComponent, ref } from "vue"
+export default defineComponent({
+  name: "TableOne",
+  setup() {
+    const { showAllFilter, maxTableHeight, setFilterForm } = tableHeight()
+    const tableData = ref<any>([])
+    const currentPage = ref<number>(1)
+    const pageSize = ref<number>(10)
+    let tableD = [] as any[]
+    for (let i = 1; i < 50; i++) {
+      tableD.push({
+        name: `张三${i}`,
+        engName: "zhangsan",
+        phone: "18888888888"
+      })
     }
-  })
+    tableData.value = Object.freeze(tableD)
+
+    function handleSizeChange(size: number) {
+      pageSize.value = size
+    }
+
+    function handleCurrentChange(page: number) {
+      currentPage.value = page
+    }
+    return {
+      showAllFilter,
+      maxTableHeight,
+      setFilterForm,
+      tableData,
+      currentPage,
+      pageSize,
+      handleSizeChange,
+      handleCurrentChange
+    }
+  }
+})
 </script>
 <style lang="less" scoped>
-.filter-content{
+.filter-content {
   background-color: #fff;
   padding: 20px 10px;
   margin-bottom: 20px;
@@ -96,13 +119,13 @@
     background: #fdfdfd;
     padding-left: 5px;
     padding-right: 5px;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
 }
 
-.fiexd-pagination{
+.fiexd-pagination {
   position: fixed;
   bottom: 0;
   // left: 200px;
@@ -112,5 +135,4 @@
   padding: 20px 10px;
   z-index: 20;
 }
-  
 </style>

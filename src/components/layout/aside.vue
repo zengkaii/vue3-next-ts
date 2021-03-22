@@ -39,7 +39,7 @@
 				menuList,
 				menuClick
 			}
-		},
+		}
 	}) 
 </script>
 <style lang="less" scoped>

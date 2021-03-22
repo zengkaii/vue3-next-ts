@@ -8,8 +8,8 @@ export default function (): any {
   const otherElmHeight = ref<number>(0)
   const searchHeight = ref<number>(0)
   const searchElm = ref<HTMLElement | any>()
-  function getElmHeight(elm:any) {
-    const computedStyle =  getComputedStyle(elm, null) || elm.currentStyle
+  function getElmHeight(elm: any) {
+    const computedStyle = getComputedStyle(elm, null) || elm.currentStyle
     const marginBottom = Number(
       computedStyle.marginBottom.replace('px', '') || 0
     )
@@ -19,9 +19,9 @@ export default function (): any {
 
   function setFilterForm() {
     showAllFilter.value = !showAllFilter.value
-      nextTick().then(() => {
-        winSize()
-      })
+    nextTick().then(() => {
+      winSize()
+    })
   }
 
   function winSize() {
@@ -31,14 +31,14 @@ export default function (): any {
     // } else {
     //   this.otherElmHeight = 0
     // }
-    
+
     if (searchElm.value) {
       searchHeight.value = getElmHeight(searchElm.value)
     }
     //                                        searchHeight + 分页 + (herder+tag)  + otherElmHeight
     maxTableHeight.value =
       document.body.clientHeight -
-      (searchHeight.value  + 85 + 35 + otherElmHeight.value)
+      (searchHeight.value + 85 + 35 + otherElmHeight.value)
   }
 
   function initPageHeight() {
@@ -56,23 +56,25 @@ export default function (): any {
       display: block;
       z-index: -999;
     `
-    if(appMain) {
+    if (appMain) {
       appMain.appendChild(iframeHtml.value)
     }
     const _iframeHtml = iframeHtml.value.contentWindow || iframeHtml.value
     _iframeHtml.addEventListener('resize', winSize)
   }
-  
+
   function getScrollDire(e) {
     const scrollTop = tableDom.value.scrollTop
     // // 有刚好把筛选条件隐藏了就表格高度刚好的情况，然后scrollTop刚好变成0了，加个判断
     const tableBodyWrapperHeight = tableDom.value.clientHeight
     let tableBodyHeight = 0
     const elTableBody = document.querySelector('.el-table__body')
-    if(elTableBody) {
+    if (elTableBody) {
       tableBodyHeight = elTableBody.clientHeight
     }
-    const isLessThanTable = maxTableHeight.value + (searchHeight.value + otherElmHeight.value) > tableBodyHeight
+    const isLessThanTable =
+      maxTableHeight.value + (searchHeight.value + otherElmHeight.value) >
+      tableBodyHeight
     if (
       e.wheelDelta < 0 &&
       showAllFilter.value &&
@@ -99,11 +101,12 @@ export default function (): any {
       }
     }
   }
-  async function  _initPage() {
+  async function _initPage() {
     await nextTick()
     searchElm.value = document.querySelector('.filter-content')
     tableDom.value = document.querySelector('.el-table__body-wrapper')
-    tableDom.value && tableDom.value.addEventListener('mousewheel', getScrollDire, true)
+    tableDom.value &&
+      tableDom.value.addEventListener('mousewheel', getScrollDire, true)
     initPageHeight()
   }
 
@@ -111,10 +114,14 @@ export default function (): any {
     _initPage()
   })
   onUnmounted(() => {
-    tableDom.value && tableDom.value.removeEventListener('mousewheel', getScrollDire, true)
-    iframeHtml.value && iframeHtml.value.removeEventListener('resize', winSize, true)
+    tableDom.value &&
+      tableDom.value.removeEventListener('mousewheel', getScrollDire, true)
+    iframeHtml.value &&
+      iframeHtml.value.removeEventListener('resize', winSize, true)
     iframeHtml.value.remove()
-    iframeHtml.value && iframeHtml.value.parentElement &&iframeHtml.value.parentElement.removeChild(iframeHtml.value)
+    iframeHtml.value &&
+      iframeHtml.value.parentElement &&
+      iframeHtml.value.parentElement.removeChild(iframeHtml.value)
   })
   return {
     iframeHtml,
