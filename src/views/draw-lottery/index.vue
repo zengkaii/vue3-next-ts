@@ -1,8 +1,12 @@
 <template lang="pug">
 .container.draw-lottery-content
   .draw-lottery-box
-    .draw-lottery-item(v-for="item in lotteryList", :key="item.id") 
-      span.item-name(@click="start(item.type)") {{ item.name }}
+    .draw-lottery-item(
+      v-for="item in lotteryList",
+      :key="item.id",
+      :class="item.index === currentIndex ? 'active' : ''",
+      @click="startDraw(item.type)"
+    ) {{ item.name }}
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue"
@@ -16,6 +20,7 @@ interface LOTTERY {
 export default defineComponent({
   name: "DrawLottery",
   setup() {
+    const currentIndex = ref<number | null>(null)
     const lotteryList = ref<LOTTERY[]>([
       {
         id: 1,
@@ -43,21 +48,21 @@ export default defineComponent({
         name: "H",
         local: 1,
         type: "prize",
-        index: 4
+        index: 8
       },
       {
         id: 5,
         name: "start",
         local: 1,
         type: "button",
-        index: 5
+        index: 10
       },
       {
         id: 6,
         name: "D",
         local: 1,
         type: "prize",
-        index: 6
+        index: 4
       },
       {
         id: 7,
@@ -71,26 +76,42 @@ export default defineComponent({
         name: "F",
         local: 1,
         type: "prize",
-        index: 8
+        index: 6
       },
       {
         id: 9,
         name: "E",
         local: 1,
         type: "prize",
-        index: 9
+        index: 5
       }
     ])
-
-    function start(type: string) {
+    console.log(123)
+    function startDraw(type: string) {
+      let list = JSON.parse(JSON.stringify(lotteryList.value))
+      list = list.sort(function (a, b) {
+        return a.index - b.index
+      })
+      console.log(list)
+      console.log("start", type)
       if (type !== "button") {
         return
       }
-      console.log("start")
+      for (let obj of list) {
+        if (obj.type === "button") {
+          continue
+        }
+        console.log(obj.index)
+        setTimeout(() => {
+          currentIndex.value = obj.index
+          console.log(currentIndex.value)
+        }, 100 * obj.index)
+      }
     }
     return {
+      currentIndex,
       lotteryList,
-      start
+      startDraw
     }
   }
 })
@@ -100,6 +121,9 @@ export default defineComponent({
   .draw-lottery-box {
     width: 300px;
     height: 300px;
+    .active {
+      background-color: yellow;
+    }
     .draw-lottery-item {
       user-select: none;
       box-sizing: border-box;
@@ -108,15 +132,9 @@ export default defineComponent({
       height: 100px;
       border-left: 1px solid #000;
       border-bottom: 1px solid #000;
-      margin-top: -3px;
-      position: relative;
-      .item-name {
-        font-size: 16px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+      text-align: center;
+      line-height: 100px;
+      transition: all 0.3s;
     }
     .draw-lottery-item:nth-child(1),
     .draw-lottery-item:nth-child(2),
@@ -132,6 +150,7 @@ export default defineComponent({
     }
     .draw-lottery-item:nth-child(5):hover {
       background-color: #e63b3b;
+      // transform: scale(1.1);
     }
   }
 }
