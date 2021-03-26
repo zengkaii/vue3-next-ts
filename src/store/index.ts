@@ -63,9 +63,9 @@ const store = createStore({
             parentId: 1,
             id: 14,
             label: '地图',
-            path: '/gdMap',
+            path: '/gd-map',
             type: 'menu',
-            name: 'gdMap'
+            name: 'gd-map'
           },
           {
             parentId: 1,
@@ -82,6 +82,14 @@ const store = createStore({
             path: '/drawer',
             type: 'menu',
             name: 'drawer'
+          },
+          {
+            parentId: 1,
+            id: 17,
+            label: '抽奖',
+            path: '/draw-lottery',
+            type: 'menu',
+            name: 'draw-lottery'
           }
         ]
       }

@@ -11,12 +11,14 @@ import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
 import { Lazyload } from '@vant/lazyload'
 import appendScript from './utils/appendScript'
+import MyMessage from './package/message/index'
 VueMarkdownEditor.use(vuepressTheme)
 
 const app = createApp(App)
 app.use(store).use(router)
 app.use(VueMarkdownEditor)
 app.use(Lazyload)
+app.use(MyMessage)
 initElementUi(app)
 app.mount('#app')
 

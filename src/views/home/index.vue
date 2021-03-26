@@ -5,14 +5,16 @@ div
     .home(style="text-align: center", v-if="show")
       img(alt="Vue logo", src="../../assets/logo.png", style="width: 100px")
       HelloWorld(msg="Welcome to Your Vue.js + TypeScript App")
+      el-button(@click="showDialog", type="primary") 点我看看
   //- Notify 
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue"
+import { defineComponent, ref, getCurrentInstance } from "vue"
 import HelloWorld from "@/components/HelloWorld.vue"
 // import Notify from '@/components/notify/index'
-
+// import Message from "./index"
+import mountDialog from "@/package/myDialog/myDialog"
 export default defineComponent({
   name: "Home",
   components: {
@@ -20,9 +22,19 @@ export default defineComponent({
     // Notify
   },
   setup() {
+    const { ctx } = getCurrentInstance() as any
+    console.log(ctx)
+    ctx.$MyMessage({
+      message: "message test",
+      type: "success"
+    })
+    const showDialog = () => {
+      mountDialog({ title: "自定义标题", content: "自定义内容" })
+    }
     const show = ref(true)
     return {
-      show
+      show,
+      showDialog
     }
   }
 })

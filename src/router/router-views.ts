@@ -31,9 +31,9 @@ const routerChildren = [
     component: () => import('@/views/echarts/index.vue')
   },
   {
-    path: '/gdMap',
-    name: 'gdMap',
-    component: () => import('@/views/gdMap/index.vue')
+    path: '/gd-map',
+    name: 'gd-map',
+    component: () => import('@/views/gd-map/index.vue')
   },
   {
     path: '/markdown',
@@ -44,6 +44,11 @@ const routerChildren = [
     path: '/drawer',
     name: 'drawer',
     component: () => import('@/views/drawer/index.vue')
+  },
+  {
+    path: '/draw-lottery',
+    name: 'draw-lottery',
+    component: () => import('@/views/draw-lottery/index.vue')
   }
 ] as RouteRecordRaw[]
 
