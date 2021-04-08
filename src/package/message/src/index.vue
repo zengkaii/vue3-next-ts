@@ -70,7 +70,7 @@ export default defineComponent({
   emits: ["destroy"],
   setup(props) {
     const typeClass = computed(() => {
-      const type = props.type
+      const type = props.type as string
       return type && TypeMap[type]
         ? `el-message__icon el-icon-${TypeMap[type]}`
         : ""
@@ -91,7 +91,7 @@ export default defineComponent({
           if (visible.value) {
             close()
           }
-        }, props.duration)
+        }, props.duration as number)
       }
     }
 
