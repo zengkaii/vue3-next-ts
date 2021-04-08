@@ -49,6 +49,16 @@ const routerChildren = [
     path: '/draw-lottery',
     name: 'draw-lottery',
     component: () => import('@/views/draw-lottery/index.vue')
+  },
+  {
+    path: '/svg',
+    name: 'svg',
+    component: () => import('@/views/svg/index.vue')
+  },
+  {
+    path: '/scroll',
+    name: 'scroll',
+    component: () => import('@/views/scroll/index.vue')
   }
 ] as RouteRecordRaw[]
 

@@ -90,6 +90,22 @@ const store = createStore({
             path: '/draw-lottery',
             type: 'menu',
             name: 'draw-lottery'
+          },
+          {
+            parentId: 1,
+            id: 18,
+            label: 'svg',
+            path: '/svg',
+            type: 'menu',
+            name: 'svg'
+          },
+          {
+            parentId: 1,
+            id: 19,
+            label: '滚动',
+            path: '/scroll',
+            type: 'menu',
+            name: 'scroll'
           }
         ]
       }
