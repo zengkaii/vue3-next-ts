@@ -59,6 +59,11 @@ const routerChildren = [
     path: '/scroll',
     name: 'scroll',
     component: () => import('@/views/scroll/index.vue')
+  },
+  {
+    path: '/menu',
+    name: 'menu',
+    component: () => import('@/views/menu/index.vue')
   }
 ] as RouteRecordRaw[]
 

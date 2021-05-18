@@ -1,64 +1,50 @@
 <template lang="pug">
 .table-container
-  .filter-content(
-    ref="searchElm",
-    :style="showAllFilter ? '' : 'padding:12px 10px'"
-  )
-    .more-label(@click="setFilterForm()")
-      span(v-show="!showAllFilter")
+  .filter-content(ref='searchElm', :style='showAllFilter ? "" : "padding:12px 10px"')
+    .more-label(@click='setFilterForm()')
+      span(v-show='!showAllFilter')
         i.el-icon-caret-bottom
         | 展开筛选
-      span(v-show="showAllFilter")
+      span(v-show='showAllFilter')
         i.el-icon-caret-top
         | 收起
-    el-form(inline, v-show="showAllFilter")
-      el-form-item(label="条件一：")
+    el-form(inline, v-show='showAllFilter')
+      el-form-item(label='条件一：')
         el-input
-      el-form-item(label="条件二：")
+      el-form-item(label='条件二：')
         el-input
-      el-form-item(label="条件三：")
+      el-form-item(label='条件三：')
         el-input
-      el-form-item(label="条件四：")
+      el-form-item(label='条件四：')
         el-input
-      el-form-item(label="条件五：")
+      el-form-item(label='条件五：')
         el-input
   .table-content
-    el-table(
-      :data="tableData",
-      style="width: 100%",
-      border,
-      :max-height="maxTableHeight"
-    )
-      el-table-column(
-        prop="one",
-        label="序号",
-        type="index",
-        width="50px",
-        align="center"
-      )
-      el-table-column(prop="name", label="姓名", align="center")
-      el-table-column(prop="engName", label="英文名", align="center")
-      el-table-column(prop="phone", label="手机号码", align="center")
-      el-table-column(label="操作", align="center")
-        template(#default="scope")
-          el-button(type="primary") 编辑
-          el-button(type="success") 查看
-          el-button(type="danger") 删除
+    el-table(:data='tableData', style='width: 100%', border, :max-height='maxTableHeight')
+      el-table-column(prop='one', label='序号', type='index', width='50px', align='center')
+      el-table-column(prop='name', label='姓名', align='center')
+      el-table-column(prop='engName', label='英文名', align='center')
+      el-table-column(prop='phone', label='手机号码', align='center')
+      el-table-column(label='操作', align='center')
+        template(#default='scope')
+          el-button(type='primary') 编辑
+          el-button(type='success') 查看
+          el-button(type='danger') 删除
   .fiexd-pagination
     el-pagination(
-      @size-change="handleSizeChange",
-      @current-change="handleCurrentChange",
-      :currentPage="currentPage",
-      :page-size="pageSize",
-      layout="total, sizes, prev, pager, next",
-      :total="1000"
+      @size-change='handleSizeChange',
+      @current-change='handleCurrentChange',
+      :currentPage='currentPage',
+      :page-size='pageSize',
+      layout='total, sizes, prev, pager, next',
+      :total='1000'
     )
 </template>
 <script lang="ts">
-import tableHeight from "./tableHeight"
-import { defineComponent, ref } from "vue"
+import tableHeight from './tableHeight'
+import { defineComponent, ref } from 'vue'
 export default defineComponent({
-  name: "TableOne",
+  name: 'TableOne',
   setup() {
     const { showAllFilter, maxTableHeight, setFilterForm } = tableHeight()
     const tableData = ref<any>([])
@@ -68,8 +54,8 @@ export default defineComponent({
     for (let i = 1; i < 50; i++) {
       tableD.push({
         name: `张三${i}`,
-        engName: "zhangsan",
-        phone: "18888888888"
+        engName: 'zhangsan',
+        phone: '18888888888'
       })
     }
     tableData.value = Object.freeze(tableD)

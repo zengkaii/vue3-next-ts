@@ -18,7 +18,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "strictPropertyInitialization": false,
     "downlevelIteration": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
     "removeComments": false,

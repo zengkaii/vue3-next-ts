@@ -2,87 +2,87 @@
 .container.draw-lottery-content
   .draw-lottery-box
     .draw-lottery-item(
-      v-for="item in lotteryList",
-      :key="item.id",
-      :class="item.index === currentIndex ? 'active' : ''",
-      @click="startDraw(item.type)"
+      v-for='item in lotteryList',
+      :key='item.id',
+      :class='item.index === currentIndex ? "active" : ""',
+      @click='startDraw(item.type)'
     ) {{ item.name }}
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue"
+import { defineComponent, ref } from 'vue'
 interface LOTTERY {
   id: number
   name: string
   local: number
-  type: "button" | "prize"
+  type: 'button' | 'prize'
   index: number
 }
 export default defineComponent({
-  name: "DrawLottery",
+  name: 'DrawLottery',
   setup() {
     const currentIndex = ref<number | null>(null)
     const lotteryList = ref<LOTTERY[]>([
       {
         id: 1,
-        name: "A",
+        name: 'A',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 1
       },
       {
         id: 2,
-        name: "B",
+        name: 'B',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 2
       },
       {
         id: 3,
-        name: "C",
+        name: 'C',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 3
       },
       {
         id: 4,
-        name: "H",
+        name: 'H',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 8
       },
       {
         id: 5,
-        name: "start",
+        name: 'start',
         local: 1,
-        type: "button",
+        type: 'button',
         index: 10
       },
       {
         id: 6,
-        name: "D",
+        name: 'D',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 4
       },
       {
         id: 7,
-        name: "G",
+        name: 'G',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 7
       },
       {
         id: 8,
-        name: "F",
+        name: 'F',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 6
       },
       {
         id: 9,
-        name: "E",
+        name: 'E',
         local: 1,
-        type: "prize",
+        type: 'prize',
         index: 5
       }
     ])
@@ -93,12 +93,12 @@ export default defineComponent({
         return a.index - b.index
       })
       console.log(list)
-      console.log("start", type)
-      if (type !== "button") {
+      console.log('start', type)
+      if (type !== 'button') {
         return
       }
       for (let obj of list) {
-        if (obj.type === "button") {
+        if (obj.type === 'button') {
           continue
         }
         console.log(obj.index)

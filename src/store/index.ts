@@ -106,6 +106,14 @@ const store = createStore({
             path: '/scroll',
             type: 'menu',
             name: 'scroll'
+          },
+          {
+            parentId: 1,
+            id: 19,
+            label: '菜单',
+            path: '/menu',
+            type: 'menu',
+            name: 'menu'
           }
         ]
       }

@@ -3,7 +3,7 @@
   #mapMain.map-style
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue"
+import { defineComponent, ref, onMounted } from 'vue'
 export default defineComponent({
   setup() {
     const text = ref<any>([])
@@ -11,19 +11,13 @@ export default defineComponent({
       setTimeout(() => {
         let win: any = window
         let amap = win.AMap
-        let map = new amap.Map("mapMain", {
+        let map = new amap.Map('mapMain', {
           zoom: 11, //级别
           center: [116.397428, 39.90923], //中心点坐标
-          viewMode: "3D" //使用3D视图
+          viewMode: '3D' //使用3D视图
         })
         amap.plugin(
-          [
-            "AMap.ToolBar",
-            "AMap.Scale",
-            "AMap.OverView",
-            "AMap.MapType",
-            "AMap.Geolocation"
-          ],
+          ['AMap.ToolBar', 'AMap.Scale', 'AMap.OverView', 'AMap.MapType', 'AMap.Geolocation'],
           function () {
             // 在图面添加工具条控件，工具条控件集成了缩放、平移、定位等功能按钮在内的组合控件
             map.addControl(new amap.ToolBar())

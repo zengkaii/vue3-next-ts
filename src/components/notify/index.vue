@@ -1,15 +1,15 @@
 <template lang="pug">
-div.notify-container
-  div.success 这是一个notify这是一个notify这是一个notify这是一个notify
+.notify-container
+  .success 这是一个notify这是一个notify这是一个notify这是一个notify
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
 export default defineComponent({
-	name: 'Notify'
+  name: 'Notify'
 })
 </script>
 <style lang="less" scoped>
-.notify-container{
+.notify-container {
   position: fixed;
   top: 20%;
   left: 50%;
@@ -17,7 +17,7 @@ export default defineComponent({
   height: 40px;
   line-height: 40px;
   transition: 1s all;
-  .success{
+  .success {
     padding: 0 20px;
     height: 100%;
     background-color: #f0f9eb;
