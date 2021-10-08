@@ -116,9 +116,12 @@ export default function (): any {
   onUnmounted(() => {
     tableDom.value &&
       tableDom.value.removeEventListener('mousewheel', getScrollDire, true)
-    iframeHtml.value &&
+    if (iframeHtml.value) {
       iframeHtml.value.removeEventListener('resize', winSize, true)
-    iframeHtml.value.remove()
+      // 这个方法不一定能移除
+      iframeHtml.value.remove()
+    }
+    //  再用下面的方法再去移除一次
     iframeHtml.value &&
       iframeHtml.value.parentElement &&
       iframeHtml.value.parentElement.removeChild(iframeHtml.value)

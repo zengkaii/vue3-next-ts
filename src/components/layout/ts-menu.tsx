@@ -85,7 +85,7 @@ export default defineComponent({
       children.push(menuRender(item))
     })
     return (
-      <ElMenu backgroundColor={this.backgroundColor} textColor={this.textColor} activeTextColor={this.activeTextColor}>
+      <ElMenu backgroundColor={this.backgroundColor as string} textColor={this.textColor as string} activeTextColor={this.activeTextColor as string}>
         {children}
       </ElMenu>
     )

@@ -1,10 +1,14 @@
 <template lang="pug">
 .flex-content
-  el-header
-    HeaderContent
-  el-container(style='flex: 1')
-    el-aside(width='200px')
+  .left-container
+    .logo
+      | vue3-next-ts
+    el-aside(width='201px')
       AsideMenu
+  .right-container
+    el-header
+      HeaderContent
+    el-container(style='flex: 1')
     .view-container
       MainContent
 </template>
@@ -24,9 +28,27 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .flex-content {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  overflow: hidden;
+  .left-container {
+    width: 200px;
+    height: 100vh;
+    background-color: @second-color;
+    .logo {
+      height: 65px;
+      width: 200px;
+      color: #fff;
+      text-align: center;
+      line-height: 65px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  .right-container {
+    flex: 1;
+    height: 100vh;
+  }
 }
 .el-header,
 .el-footer {
@@ -39,7 +61,7 @@ export default defineComponent({
   height: 65px !important;
   line-height: 65px;
   // background: linear-gradient(to right, @dark-color , @third-color);
-  background: @second-color;
+  background: @light-color;
 }
 .el-aside {
   background-color: @second-color;

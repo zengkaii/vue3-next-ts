@@ -29,14 +29,14 @@ module.exports = {
       AMap: "AMap" // 高德地图配置
     }
   },
-  pluginOptions:{
-		"style-resources-loader": {
-			preProcessor: "less",
-			patterns: [
-				//这个是加上自己的路径，
-				path.resolve(__dirname, "./src/assets/less/theme.less")
-			]
-		}
+  pluginOptions: {
+    "style-resources-loader": {
+      preProcessor: "less",
+      patterns: [
+        //这个是加上自己的路径，
+        path.resolve(__dirname, "./src/assets/less/theme.less")
+      ]
+    }
   }
   // css: {
   //   requireModuleExtension: true, // 是否开启CSSmodule并保留xxx.module.css后缀
