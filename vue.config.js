@@ -6,6 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
+  publicPath: '/pages', // 部署到github page
   devServer: {
     open: true,
     overlay: {

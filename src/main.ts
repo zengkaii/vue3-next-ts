@@ -10,6 +10,7 @@ import '@kangc/v-md-editor/lib/style/base-editor.css'
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
 import { Lazyload } from '@vant/lazyload'
+import directives from './directives/index'
 import appendScript from './utils/appendScript'
 import MyMessage from './package/message/index'
 VueMarkdownEditor.use(vuepressTheme)
@@ -21,6 +22,7 @@ app.use(Lazyload)
 app.use(MyMessage)
 initElementUi(app)
 app.mount('#app')
+directives(app)
 
 appendScript()
 

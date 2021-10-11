@@ -64,6 +64,16 @@ const routerChildren = [
     path: '/menu',
     name: 'menu',
     component: () => import('@/views/menu/index.vue')
+  },
+  {
+    path: '/teleport',
+    name: 'teleport',
+    component: () => import('@/views/teleport/index.vue')
+  },
+  {
+    path: '/directive',
+    name: 'directive',
+    component: () => import('@/views/directive/index.vue')
   }
 ] as RouteRecordRaw[]
 

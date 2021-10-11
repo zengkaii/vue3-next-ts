@@ -109,11 +109,27 @@ const store = createStore({
           },
           {
             parentId: 1,
-            id: 19,
+            id: 20,
             label: '菜单',
             path: '/menu',
             type: 'menu',
             name: 'menu'
+          },
+          {
+            parentId: 1,
+            id: 21,
+            label: 'teleport',
+            path: '/teleport',
+            type: 'menu',
+            name: 'teleport'
+          },
+          {
+            parentId: 1,
+            id: 22,
+            label: 'directive',
+            path: '/directive',
+            type: 'menu',
+            name: 'directive'
           }
         ]
       }
