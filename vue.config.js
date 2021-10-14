@@ -7,6 +7,7 @@ function resolve(dir) {
 }
 module.exports = {
   publicPath: '/pages', // 部署到github page
+  outputDir: 'docs',
   devServer: {
     open: true,
     overlay: {
