@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
-  publicPath: '/', // 部署到github page
+  publicPath: '/vue3-next-ts', // 部署到github page
   outputDir: 'docs',
   devServer: {
     open: true,
