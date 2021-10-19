@@ -1,6 +1,12 @@
 <template>
   <div>
-    <el-input v-model="elInputValueNumber" type="text" v-onlyNumber style="margin-bottom: 20px" />
+    <el-input
+      v-model="elInputValueNumber"
+      type="text"
+      v-onlyNumber
+      style="margin-bottom: 20px"
+      placeholder="only number"
+    />
     <el-input v-model="elInputValue" type="text" v-focus style="margin-bottom: 20px" />
     <input v-model="inputValue" type="text" v-focus2 style="margin-bottom: 20px" />
     <div v-green style="font-weight: bold">红色红色</div>
