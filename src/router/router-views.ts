@@ -74,6 +74,11 @@ const routerChildren = [
     path: '/directive',
     name: 'directive',
     component: () => import('@/views/directive/index.vue')
+  },
+  {
+    path: '/functional',
+    name: 'functional',
+    component: () => import('@/views/functional/index.vue')
   }
 ] as RouteRecordRaw[]
 

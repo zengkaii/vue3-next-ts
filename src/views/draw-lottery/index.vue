@@ -86,7 +86,6 @@ export default defineComponent({
         index: 5
       }
     ])
-    console.log(123)
     function startDraw(type: string) {
       let list = JSON.parse(JSON.stringify(lotteryList.value))
       list = list.sort(function (a, b) {

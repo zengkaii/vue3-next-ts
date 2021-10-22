@@ -17,6 +17,7 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
+  name: 'directive',
   directives: {
     onlyNumber: {
       mounted(el) {
@@ -64,5 +65,4 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

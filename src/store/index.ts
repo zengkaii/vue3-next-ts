@@ -1,4 +1,4 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex'
 import Types from './types'
 import { MenuList } from '@/model/Store'
 const store = createStore({
@@ -130,6 +130,14 @@ const store = createStore({
             path: '/directive',
             type: 'menu',
             name: 'directive'
+          },
+          {
+            parentId: 1,
+            id: 23,
+            label: 'functional',
+            path: '/functional',
+            type: 'menu',
+            name: 'functional'
           }
         ]
       }
@@ -151,9 +159,9 @@ const store = createStore({
     }
   },
   getters: {
-    isLogin: state => state.isLogin,
-    dynamicTags: state => state.dynamicTags,
-    menuList: state => state.menuList
+    isLogin: (state) => state.isLogin,
+    dynamicTags: (state) => state.dynamicTags,
+    menuList: (state) => state.menuList
   },
   actions: {
     [Types.SET_DYNAMIC_TAGS]({ commit }, dynamicTags) {
