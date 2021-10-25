@@ -2,8 +2,8 @@
 .input-component
   el-input(v-model='message', placeholder='输入点什么试试？')
 </template>
-<script>
-import { defineComponent, computed } from 'vue'
+<script lang="ts">
+import { defineComponent, computed, PropType } from 'vue'
 export default defineComponent({
   name: 'inputComponent',
 
@@ -12,7 +12,7 @@ export default defineComponent({
   },
   props: {
     modelValue: {
-      type: String,
+      type: String as PropType<string>,
       default: ''
     }
   },
