@@ -19,7 +19,6 @@ export default defineComponent({
     function getRouter() {
       let parentName = ''
       for (const obj of menuList) {
-        console.log(obj)
         if (obj.id === currrentMenu.value.parentId) {
           parentName = obj.label
           break

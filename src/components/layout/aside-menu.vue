@@ -47,7 +47,6 @@ export default defineComponent({
     }
     function getRouteId(menuList: MenuList[]) {
       for (const obj of menuList) {
-        console.log(obj)
         if (obj.path === route.path) {
           store.dispatch(Types.SET_CURRENT_MENU, obj)
           defaultActive.value = obj.id.toString()
