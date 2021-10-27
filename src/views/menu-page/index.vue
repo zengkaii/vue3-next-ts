@@ -74,10 +74,10 @@
           el-button(type="success", @click="confirmHandle()") 确定
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue"
-import { menuList, saveMenu, deleteMenu } from "@/api/menuApi"
-import { ElMessage, ElMessageBox } from "element-plus"
-import { MenuList } from "@/model/Store"
+import { defineComponent, ref } from 'vue'
+import { menuList, saveMenu, deleteMenu } from '@/api/menuApi'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { MenuList } from '@/model/Store'
 interface Form {
   label: string
   path?: string
@@ -88,14 +88,14 @@ interface Form {
 }
 
 export default defineComponent({
-  name: "MenuPage",
+  name: 'MenuPage',
   setup() {
     const form = ref<Form>({
-      label: "",
-      path: "",
-      type: "",
-      name: "",
-      parentId: ""
+      label: '',
+      path: '',
+      type: '',
+      name: '',
+      parentId: ''
     })
     const treeData = ref<any>([])
     const parentData = ref([])
@@ -108,9 +108,7 @@ export default defineComponent({
       try {
         const { data } = await menuList()
         const menuData = data.array || []
-        parentData.value = menuData.filter(
-          (item: MenuList) => item.type === "bar"
-        )
+        parentData.value = menuData.filter((item: MenuList) => item.type === 'bar')
         initTreeData(menuData)
       } catch (error) {
         ElMessage.error(error.msg)
@@ -142,11 +140,7 @@ export default defineComponent({
             return filt
           }
         })
-        if (
-          item.children &&
-          item.children.length > 0 &&
-          filterLeft.length > 0
-        ) {
+        if (item.children && item.children.length > 0 && filterLeft.length > 0) {
           item.children = item.children.map((c: MenuList) => {
             findParent([c], filterLeft)
             return c
@@ -161,11 +155,11 @@ export default defineComponent({
       parentDisabled.value = false
       showEditMenu.value = true
       form.value = {
-        label: "",
-        path: "",
-        type: "",
-        name: "",
-        parentId: ""
+        label: '',
+        path: '',
+        type: '',
+        name: '',
+        parentId: ''
       }
     }
 
@@ -177,9 +171,9 @@ export default defineComponent({
     }
     async function remove(node: any, data: any) {
       try {
-        await ElMessageBox.confirm(`确定删除菜单${data.label}吗？`, "提示")
+        await ElMessageBox.confirm(`确定删除菜单${data.label}吗？`, '提示')
         await deleteMenu({ id: data.id }).then(() => {
-          ElMessage.success("删除成功")
+          ElMessage.success('删除成功')
           initData()
         })
       } catch (error) {
@@ -190,17 +184,17 @@ export default defineComponent({
     function resetForm() {
       // this.$options.data()报错?
       form.value = {
-        label: "",
-        path: "",
-        type: "",
-        name: "",
+        label: '',
+        path: '',
+        type: '',
+        name: '',
         parentId: form.value.parentId
       }
     }
     async function confirmHandle() {
       try {
         await saveMenu(form)
-        ElMessage.success("保存成功")
+        ElMessage.success('保存成功')
         resetForm()
         showEditMenu.value = false
         await initData()

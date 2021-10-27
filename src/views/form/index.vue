@@ -1,40 +1,55 @@
-<template lang="pug">
-.container
-  el-row(:gutter='72')
-    el-col(:span='12')
-      el-form(:model='form', label-width='100px', label-position='left')
-        el-form-item(label='单选框')
-          el-radio-group(v-model='form.radio')
-            el-radio(label='1') 选项一
-            el-radio(label='2') 选项二
-            el-radio(label='3') 选项三
-        el-form-item(label='输入框')
-          el-input(v-model='form.input')
-        el-form-item(label='输入框-组件')
-          inputComponent(v-model='form.componentInput')
-        el-tree(
-          :data='treeData',
-          node-key='id',
-          default-expand-all,
-          :expand-on-click-node='false',
-          @node-click='nodeClick'
-        )
-          template(#default='{ node, data }')
-            span.custom-tree-node(:class='data.id === selectId ? "currentSelect" : ""')
-              span {{ node.label }}
-    el-col(:span='12')
-      el-form(:model='form2', label-width='100px', label-position='left')
-        el-form-item(label='单选框')
-          el-radio-group(v-model='form2.radio')
-            el-radio(label='1') 选项一
-            el-radio(label='2') 选项二
-            el-radio(label='3') 选项三
-        el-form-item(label='输入框')
-          el-input(v-model='form2.input')
-        el-form-item(label='输入框-组件')
-          inputComponent(v-model='form2.componentInput')
-      .result
-        span {{ form2 }}
+<template>
+  <div class="container">
+    <el-row :gutter="72">
+      <el-col :span="12">
+        <el-form :model="form" label-width="100px" label-position="left">
+          <el-form-item label="单选框">
+            <el-radio-group v-model="form.radio">
+              <el-radio label="1">选项一</el-radio>
+              <el-radio label="2">选项二</el-radio>
+              <el-radio label="3">选项三</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="输入框">
+            <el-input v-model="form.input"></el-input>
+          </el-form-item>
+          <el-form-item label="输入框-组件">
+            <inputComponent v-model="form.componentInput"></inputComponent> </el-form-item
+          ><el-tree
+            :data="treeData"
+            node-key="id"
+            default-expand-all
+            :expand-on-click-node="false"
+            @node-click="nodeClick"
+          >
+            <template #default="{ node, data }">
+              <span class="custom-tree-node" :class="data.id === selectId ? 'currentSelect' : ''">
+                <span>{{ node.label }} </span>
+              </span>
+            </template>
+          </el-tree>
+        </el-form>
+      </el-col>
+      <el-col :span="12">
+        <el-form :model="form2" label-width="100px" label-position="left">
+          <el-form-item label="label">
+            <el-radio-group v-model="form2.radio">
+              <el-radio label="1">选项一</el-radio>
+              <el-radio label="2">选项二</el-radio>
+              <el-radio label="3">选项三</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="输入框">
+            <el-input v-model="form2.input"></el-input>
+          </el-form-item>
+          <el-form-item label="输入框-组件">
+            <inputComponent v-model="form2.componentInput"></inputComponent>
+          </el-form-item>
+          <div class="result">{{ form2 }}</div>
+        </el-form>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 <script lang="ts">
 import inputComponent from './input-component.vue'

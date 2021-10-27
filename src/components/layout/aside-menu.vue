@@ -5,13 +5,15 @@
     :backgroundColor='"#545c64"',
     :textColor='"#fff"',
     :activeTextColor='"#ffd04b"',
+    :defaultActive='defaultActive',
     @menuClick='menuClick'
   )
 </template>
 <script lang="ts">
-import { defineComponent, computed, nextTick } from 'vue'
+import { defineComponent, computed, nextTick, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { MenuList } from '@/model/Store'
+import Types from '@/store/types'
 import TsMenu from './ts-menu'
 import { useStore } from 'vuex'
 export default defineComponent({
@@ -26,9 +28,11 @@ export default defineComponent({
     const menuList = computed(() => {
       return store.getters.menuList
     })
+    const defaultActive = ref<string>('')
 
     // mehtods
     function menuClick(item: MenuList) {
+      store.dispatch(Types.SET_CURRENT_MENU, item)
       if (!item.path) {
         return
       }
@@ -41,9 +45,22 @@ export default defineComponent({
         router.push(path)
       })
     }
-
+    function getRouteId(menuList: MenuList[]) {
+      for (const obj of menuList) {
+        console.log(obj)
+        if (obj.path === route.path) {
+          store.dispatch(Types.SET_CURRENT_MENU, obj)
+          defaultActive.value = obj.id.toString()
+          break
+        } else if (obj.children && obj.children.length > 0) {
+          getRouteId(obj.children)
+        }
+      }
+    }
+    getRouteId(menuList.value)
     return {
       menuList,
+      defaultActive,
       menuClick
     }
   }
@@ -51,7 +68,7 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .aside-container {
-  overflow: hidden;
+  height: calc(100vh - 65px);
   .el-menu {
     text-align: left;
   }

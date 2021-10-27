@@ -1,23 +1,21 @@
-'use strict';
+'use strict'
 
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, '__esModule', { value: true })
 
-var vue = require('vue');
-
-
+var vue = require('vue')
 
 const EVENT_CODE = {
-    tab: 'Tab',
-    enter: 'Enter',
-    space: 'Space',
-    left: 'ArrowLeft',
-    up: 'ArrowUp',
-    right: 'ArrowRight',
-    down: 'ArrowDown',
-    esc: 'Escape',
-    delete: 'Delete',
-    backspace: 'Backspace'
-};
+  tab: 'Tab',
+  enter: 'Enter',
+  space: 'Space',
+  left: 'ArrowLeft',
+  up: 'ArrowUp',
+  right: 'ArrowRight',
+  down: 'ArrowDown',
+  esc: 'Escape',
+  delete: 'Delete',
+  backspace: 'Backspace'
+}
 
 /**
  * Make a map and return a function for checking if a key
@@ -28,248 +26,301 @@ const EVENT_CODE = {
  */
 
 const on = function (element, event, handler, useCapture = false) {
-    if (element && event && handler) {
-        element.addEventListener(event, handler, useCapture);
-    }
-};
+  if (element && event && handler) {
+    element.addEventListener(event, handler, useCapture)
+  }
+}
 const off = function (element, event, handler, useCapture = false) {
-    if (element && event && handler) {
-        element.removeEventListener(event, handler, useCapture);
-    }
-};
+  if (element && event && handler) {
+    element.removeEventListener(event, handler, useCapture)
+  }
+}
 
 const TypeMap = {
-    success: 'success',
-    info: 'info',
-    warning: 'warning',
-    error: 'error'
-};
+  success: 'success',
+  info: 'info',
+  warning: 'warning',
+  error: 'error'
+}
 var script = vue.defineComponent({
-    name: 'ElMessage',
-    props: {
-        customClass: { type: String, default: '' },
-        center: { type: Boolean, default: false },
-        dangerouslyUseHTMLString: { type: Boolean, default: false },
-        duration: { type: Number, default: 3000 },
-        iconClass: { type: String, default: '' },
-        id: { type: String, default: '' },
-        message: {
-            type: [String, Object],
-            default: ''
-        },
-        onClose: {
-            type: Function,
-            required: true
-        },
-        showClose: { type: Boolean, default: false },
-        type: { type: String, default: 'info' },
-        offset: { type: Number, default: 20 },
-        zIndex: { type: Number, default: 0 }
+  name: 'ElMessage',
+  props: {
+    customClass: { type: String, default: '' },
+    center: { type: Boolean, default: false },
+    dangerouslyUseHTMLString: { type: Boolean, default: false },
+    duration: { type: Number, default: 3000 },
+    iconClass: { type: String, default: '' },
+    id: { type: String, default: '' },
+    message: {
+      type: [String, Object],
+      default: ''
     },
-    emits: ['destroy'],
-    setup(props) {
-        const typeClass = vue.computed(() => {
-            const type = props.type;
-            return type && TypeMap[type]
-                ? `el-message__icon el-icon-${TypeMap[type]}`
-                : '';
-        });
-        const customStyle = vue.computed(() => {
-            return {
-                top: `${props.offset}px`,
-                zIndex: props.zIndex
-            };
-        });
-        const visible = vue.ref(false);
-        let timer = null;
-        function startTimer() {
-            if (props.duration > 0) {
-                timer = setTimeout(() => {
-                    if (visible.value) {
-                        close();
-                    }
-                }, props.duration);
-            }
-        }
-        function clearTimer() {
-            clearTimeout(timer);
-            timer = null;
-        }
-        function close() {
-            visible.value = false;
-        }
-        function keydown({ code }) {
-            if (code === EVENT_CODE.esc) {
-                if (visible.value) {
-                    close();
-                }
-            }
-            else {
-                startTimer();
-            }
-        }
-        vue.onMounted(() => {
-            startTimer();
-            visible.value = true;
-            on(document, 'keydown', keydown);
-        });
-        vue.onBeforeUnmount(() => {
-            off(document, 'keydown', keydown);
-        });
-        return {
-            typeClass,
-            customStyle,
-            visible,
-            close,
-            clearTimer,
-            startTimer
-        };
+    onClose: {
+      type: Function,
+      required: true
+    },
+    showClose: { type: Boolean, default: false },
+    type: { type: String, default: 'info' },
+    offset: { type: Number, default: 20 },
+    zIndex: { type: Number, default: 0 }
+  },
+  emits: ['destroy'],
+  setup(props) {
+    const typeClass = vue.computed(() => {
+      const type = props.type
+      return type && TypeMap[type] ? `el-message__icon el-icon-${TypeMap[type]}` : ''
+    })
+    const customStyle = vue.computed(() => {
+      return {
+        top: `${props.offset}px`,
+        zIndex: props.zIndex
+      }
+    })
+    const visible = vue.ref(false)
+    let timer = null
+    function startTimer() {
+      if (props.duration > 0) {
+        timer = setTimeout(() => {
+          if (visible.value) {
+            close()
+          }
+        }, props.duration)
+      }
     }
-});
+    function clearTimer() {
+      clearTimeout(timer)
+      timer = null
+    }
+    function close() {
+      visible.value = false
+    }
+    function keydown({ code }) {
+      if (code === EVENT_CODE.esc) {
+        if (visible.value) {
+          close()
+        }
+      } else {
+        startTimer()
+      }
+    }
+    vue.onMounted(() => {
+      startTimer()
+      visible.value = true
+      on(document, 'keydown', keydown)
+    })
+    vue.onBeforeUnmount(() => {
+      off(document, 'keydown', keydown)
+    })
+    return {
+      typeClass,
+      customStyle,
+      visible,
+      close,
+      clearTimer,
+      startTimer
+    }
+  }
+})
 
 const _hoisted_1 = {
-    key: 0,
-    class: "el-message__content"
-};
+  key: 0,
+  class: 'el-message__content'
+}
 
 function render(_ctx, _cache) {
-    return (vue.openBlock(), vue.createBlock(vue.Transition, {
-        name: "el-message-fade",
+  return (
+    vue.openBlock(),
+    vue.createBlock(
+      vue.Transition,
+      {
+        name: 'el-message-fade',
         onBeforeLeave: _ctx.onClose,
-        onAfterLeave: _cache[4] || (_cache[4] = () => (_ctx.$emit('destroy')))
-    }, {
+        onAfterLeave: _cache[4] || (_cache[4] = () => _ctx.$emit('destroy'))
+      },
+      {
         default: vue.withCtx(() => [
-            vue.withDirectives(vue.createVNode("div", {
+          vue.withDirectives(
+            vue.createVNode(
+              'div',
+              {
                 id: _ctx.id,
                 class: [
-                    'el-message',
-                    _ctx.type && !_ctx.iconClass ? `el-message--${_ctx.type}` : '',
-                    _ctx.center ? 'is-center' : '',
-                    _ctx.showClose ? 'is-closable' : '',
-                    _ctx.customClass
+                  'el-message',
+                  _ctx.type && !_ctx.iconClass ? `el-message--${_ctx.type}` : '',
+                  _ctx.center ? 'is-center' : '',
+                  _ctx.showClose ? 'is-closable' : '',
+                  _ctx.customClass
                 ],
                 style: _ctx.customStyle,
-                role: "alert",
-                onMouseenter: _cache[2] || (_cache[2] = (...args) => (_ctx.clearTimer && _ctx.clearTimer(...args))),
-                onMouseleave: _cache[3] || (_cache[3] = (...args) => (_ctx.startTimer && _ctx.startTimer(...args)))
-            }, [
-                (_ctx.type || _ctx.iconClass)
-                    ? (vue.openBlock(), vue.createBlock("i", {
+                role: 'alert',
+                onMouseenter:
+                  _cache[2] ||
+                  (_cache[2] = (...args) => _ctx.clearTimer && _ctx.clearTimer(...args)),
+                onMouseleave:
+                  _cache[3] ||
+                  (_cache[3] = (...args) => _ctx.startTimer && _ctx.startTimer(...args))
+              },
+              [
+                _ctx.type || _ctx.iconClass
+                  ? (vue.openBlock(),
+                    vue.createBlock(
+                      'i',
+                      {
                         key: 0,
                         class: [_ctx.typeClass, _ctx.iconClass]
-                    }, null, 2 /* CLASS */))
-                    : vue.createCommentVNode("v-if", true),
-                vue.renderSlot(_ctx.$slots, "default", {}, () => [
-                    (!_ctx.dangerouslyUseHTMLString)
-                        ? (vue.openBlock(), vue.createBlock("p", _hoisted_1, vue.toDisplayString(_ctx.message), 1 /* TEXT */))
-                        : (vue.openBlock(), vue.createBlock(vue.Fragment, { key: 1 }, [
-                            vue.createCommentVNode(" Caution here, message could've been compromised, never use user's input as message "),
-                            vue.createCommentVNode("  eslint-disable-next-line "),
-                            vue.createVNode("p", {
-                                class: "el-message__content",
-                                innerHTML: _ctx.message
-                            }, null, 8 /* PROPS */, ["innerHTML"])
-                        ], 64 /* STABLE_FRAGMENT */))
+                      },
+                      null,
+                      2 /* CLASS */
+                    ))
+                  : vue.createCommentVNode('v-if', true),
+                vue.renderSlot(_ctx.$slots, 'default', {}, () => [
+                  !_ctx.dangerouslyUseHTMLString
+                    ? (vue.openBlock(),
+                      vue.createBlock(
+                        'p',
+                        _hoisted_1,
+                        vue.toDisplayString(_ctx.message),
+                        1 /* TEXT */
+                      ))
+                    : (vue.openBlock(),
+                      vue.createBlock(
+                        vue.Fragment,
+                        { key: 1 },
+                        [
+                          vue.createCommentVNode(
+                            " Caution here, message could've been compromised, never use user's input as message "
+                          ),
+                          vue.createCommentVNode('  eslint-disable-next-line '),
+                          vue.createVNode(
+                            'p',
+                            {
+                              class: 'el-message__content',
+                              innerHTML: _ctx.message
+                            },
+                            null,
+                            8 /* PROPS */,
+                            ['innerHTML']
+                          )
+                        ],
+                        64 /* STABLE_FRAGMENT */
+                      ))
                 ]),
-                (_ctx.showClose)
-                    ? (vue.openBlock(), vue.createBlock("div", {
-                        key: 1,
-                        class: "el-message__closeBtn el-icon-close",
-                        onClick: _cache[1] || (_cache[1] = vue.withModifiers((...args) => (_ctx.close && _ctx.close(...args)), ["stop"]))
+                _ctx.showClose
+                  ? (vue.openBlock(),
+                    vue.createBlock('div', {
+                      key: 1,
+                      class: 'el-message__closeBtn el-icon-close',
+                      onClick:
+                        _cache[1] ||
+                        (_cache[1] = vue.withModifiers(
+                          (...args) => _ctx.close && _ctx.close(...args),
+                          ['stop']
+                        ))
                     }))
-                    : vue.createCommentVNode("v-if", true)
-            ], 46 /* CLASS, STYLE, PROPS, HYDRATE_EVENTS */, ["id"]), [
-                [vue.vShow, _ctx.visible]
-            ])
+                  : vue.createCommentVNode('v-if', true)
+              ],
+              46 /* CLASS, STYLE, PROPS, HYDRATE_EVENTS */,
+              ['id']
+            ),
+            [[vue.vShow, _ctx.visible]]
+          )
         ]),
         _: 3 /* FORWARDED */
-    }, 8 /* PROPS */, ["onBeforeLeave"]))
+      },
+      8 /* PROPS */,
+      ['onBeforeLeave']
+    )
+  )
 }
 
-script.render = render;
-script.__file = "packages/message/src/index.vue";
+script.render = render
+script.__file = 'packages/message/src/index.vue'
 
-const instances = [];
-let seed = 1;
+const instances = []
+let seed = 1
 const Message = function (opts = {}) {
-    if (typeof opts === 'string') {
-        opts = {
-            message: opts
-        };
+  if (typeof opts === 'string') {
+    opts = {
+      message: opts
     }
-    let options = opts;
-    let verticalOffset = opts.offset || 20;
-    instances.forEach(({ vm }) => {
-        verticalOffset += (vm.el.offsetHeight || 0) + 16;
-    });
-    verticalOffset += 16;
-    const id = 'message_' + seed++;
-    const userOnClose = options.onClose;
-    options = Object.assign(Object.assign({}, options), {
-        onClose: () => {
-            close(id, userOnClose);
-        }, offset: verticalOffset, id, zIndex: 1111
-    });
-    const container = document.createElement('div');
-    container.className = `container_${id}`;
-    const message = options.message;
-    const vm = vue.createVNode(script, options, vue.isVNode(options.message) ? { default: () => message } : null);
-    vm.props.onDestroy = () => {
-        vue.render(null, container);
-    };
-    vue.render(vm, container);
-    instances.push({ vm });
-    document.body.appendChild(container.firstElementChild);
-    return {
-        close: () => vm.component.proxy.visible = false
-    };
-};
+  }
+  let options = opts
+  let verticalOffset = opts.offset || 20
+  instances.forEach(({ vm }) => {
+    verticalOffset += (vm.el.offsetHeight || 0) + 16
+  })
+  verticalOffset += 16
+  const id = 'message_' + seed++
+  const userOnClose = options.onClose
+  options = Object.assign(Object.assign({}, options), {
+    onClose: () => {
+      close(id, userOnClose)
+    },
+    offset: verticalOffset,
+    id,
+    zIndex: 1111
+  })
+  const container = document.createElement('div')
+  container.className = `container_${id}`
+  const message = options.message
+  const vm = vue.createVNode(
+    script,
+    options,
+    vue.isVNode(options.message) ? { default: () => message } : null
+  )
+  vm.props.onDestroy = () => {
+    vue.render(null, container)
+  }
+  vue.render(vm, container)
+  instances.push({ vm })
+  document.body.appendChild(container.firstElementChild)
+  return {
+    close: () => (vm.component.proxy.visible = false)
+  }
+}
 function close(id, userOnClose) {
-    const idx = instances.findIndex(({ vm }) => {
-        const { id: _id } = vm.component.props;
-        return id === _id;
-    });
-    if (idx === -1) {
-        return;
-    }
-    const { vm } = instances[idx];
-    if (!vm)
-        return;
-    userOnClose === null || userOnClose === void 0 ? void 0 : userOnClose(vm);
-    const removedHeight = vm.el.offsetHeight;
-    instances.splice(idx, 1);
-    const len = instances.length;
-    if (len < 1)
-        return;
-    for (let i = idx; i < len; i++) {
-        const pos = parseInt(instances[i].vm.el.style['top'], 10) - removedHeight - 16;
-        instances[i].vm.component.props.offset = pos;
-    }
+  const idx = instances.findIndex(({ vm }) => {
+    const { id: _id } = vm.component.props
+    return id === _id
+  })
+  if (idx === -1) {
+    return
+  }
+  const { vm } = instances[idx]
+  if (!vm) return
+  userOnClose === null || userOnClose === void 0 ? void 0 : userOnClose(vm)
+  const removedHeight = vm.el.offsetHeight
+  instances.splice(idx, 1)
+  const len = instances.length
+  if (len < 1) return
+  for (let i = idx; i < len; i++) {
+    const pos = parseInt(instances[i].vm.el.style['top'], 10) - removedHeight - 16
+    instances[i].vm.component.props.offset = pos
+  }
 }
 function closeAll() {
-    for (let i = instances.length - 1; i >= 0; i--) {
-        const instance = instances[i].vm.component;
-        instance.ctx.close();
-    }
+  for (let i = instances.length - 1; i >= 0; i--) {
+    const instance = instances[i].vm.component
+    instance.ctx.close()
+  }
 }
-['success', 'warning', 'info', 'error'].forEach(type => {
-    Message[type] = options => {
-        if (typeof options === 'string') {
-            options = {
-                message: options,
-                type
-            };
-        }
-        else {
-            options.type = type;
-        }
-        return Message(options);
-    };
-});
-Message.closeAll = closeAll;
+['success', 'warning', 'info', 'error'].forEach((type) => {
+  Message[type] = (options) => {
+    if (typeof options === 'string') {
+      options = {
+        message: options,
+        type
+      }
+    } else {
+      options.type = type
+    }
+    return Message(options)
+  }
+})
+Message.closeAll = closeAll
 
 Message.install = (app) => {
-    app.config.globalProperties.$message = Message;
-};
+  app.config.globalProperties.$message = Message
+}
 
-exports.default = Message;
+exports.default = Message

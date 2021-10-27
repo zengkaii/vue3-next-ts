@@ -1,9 +1,5 @@
 <template>
-  <transition
-    name="el-message-fade"
-    @before-leave="onClose"
-    @after-leave="$emit('destroy')"
-  >
+  <transition name="el-message-fade" @before-leave="onClose" @after-leave="$emit('destroy')">
     <div
       v-show="visible"
       :id="id"
@@ -28,52 +24,46 @@
         <!--  eslint-disable-next-line -->
         <p v-else class="el-message__content" v-html="message"></p>
       </slot>
-      <div
-        v-if="showClose"
-        class="el-message__closeBtn el-icon-close"
-        @click.stop="close"
-      ></div>
+      <div v-if="showClose" class="el-message__closeBtn el-icon-close" @click.stop="close"></div>
     </div>
   </transition>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, PropType, onMounted } from "vue"
+import { defineComponent, computed, ref, PropType, onMounted } from 'vue'
 // MessageVM is an alias of vue.VNode
 const TypeMap = {
-  success: "success",
-  info: "info",
-  warning: "warning",
-  error: "error"
+  success: 'success',
+  info: 'info',
+  warning: 'warning',
+  error: 'error'
 }
 export default defineComponent({
-  name: "ElMessage",
+  name: 'ElMessage',
   props: {
-    customClass: { type: String, default: "" },
+    customClass: { type: String, default: '' },
     center: { type: Boolean, default: false },
     dangerouslyUseHTMLString: { type: Boolean, default: false },
     duration: { type: Number, default: 3000 },
-    iconClass: { type: String, default: "" },
-    id: { type: String, default: "" },
+    iconClass: { type: String, default: '' },
+    id: { type: String, default: '' },
     message: {
       type: [String, Object] as PropType<string | any>,
-      default: ""
+      default: ''
     },
     onClose: {
       type: Function as PropType<() => void>,
       required: true
     },
     showClose: { type: Boolean, default: false },
-    type: { type: String, default: "info" },
+    type: { type: String, default: 'info' },
     offset: { type: Number, default: 20 },
     zIndex: { type: Number, default: 0 }
   },
-  emits: ["destroy"],
+  emits: ['destroy'],
   setup(props) {
     const typeClass = computed(() => {
       const type = props.type as string
-      return type && TypeMap[type]
-        ? `el-message__icon el-icon-${TypeMap[type]}`
-        : ""
+      return type && TypeMap[type] ? `el-message__icon el-icon-${TypeMap[type]}` : ''
     })
     const customStyle = computed(() => {
       return {

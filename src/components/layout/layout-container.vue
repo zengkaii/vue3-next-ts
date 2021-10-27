@@ -34,6 +34,8 @@ export default defineComponent({
   .left-container {
     width: 200px;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: @second-color;
     .logo {
       height: 65px;

@@ -1,4 +1,3 @@
-
 import { createVNode, render, isVNode } from 'vue'
 import MessageConstructor from './index.vue'
 let seed = 1
@@ -33,10 +32,10 @@ const Message: any = function (opts = {} as any) {
   render(vm, container)
   document.body.appendChild(container.firstElementChild)
   return {
-    close: () => (vm.component.proxy as any).visible = false
+    close: () => ((vm.component.proxy as any).visible = false)
   }
 }
-export function close(id: string, userOnClose?: (vm: any) => void): void {
+export function close(id: string, userOnClose?: () => void): void {
   const idx = instances.findIndex(({ vm }) => {
     const { id: _id } = vm.component.props
     return id === _id
@@ -47,7 +46,7 @@ export function close(id: string, userOnClose?: (vm: any) => void): void {
 
   const { vm } = instances[idx]
   if (!vm) return
-  userOnClose?.(vm)
+  userOnClose?.()
 
   const removedHeight = vm.el.offsetHeight
   instances.splice(idx, 1)
@@ -56,8 +55,7 @@ export function close(id: string, userOnClose?: (vm: any) => void): void {
   const len = instances.length
   if (len < 1) return
   for (let i = idx; i < len; i++) {
-    const pos =
-      parseInt(instances[i].vm.el.style['top'], 10) - removedHeight - 16
+    const pos = parseInt(instances[i].vm.el.style['top'], 10) - removedHeight - 16
 
     instances[i].vm.component.props.offset = pos
   }

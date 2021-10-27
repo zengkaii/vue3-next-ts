@@ -25,4 +25,3 @@ app.mount('#app')
 directives(app)
 
 appendScript()
-

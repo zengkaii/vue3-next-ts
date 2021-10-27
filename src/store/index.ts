@@ -4,6 +4,7 @@ import { MenuList } from '@/model/Store'
 const store = createStore({
   state: {
     isLogin: false,
+    currrentMenu: {} as MenuList,
     menuList: [
       {
         id: 1,
@@ -138,6 +139,14 @@ const store = createStore({
             path: '/functional',
             type: 'menu',
             name: 'functional'
+          },
+          {
+            parentId: 1,
+            id: 24,
+            label: 'slotsDemo',
+            path: '/slotsDemo',
+            type: 'menu',
+            name: 'slotsDemo'
           }
         ]
       }
@@ -148,6 +157,9 @@ const store = createStore({
     // 添加tags
     [Types.SET_DYNAMIC_TAGS](state, dynamicTags) {
       state.dynamicTags.push(dynamicTags)
+    },
+    [Types.SET_CURRENT_MENU](state, currrentMenu) {
+      state.currrentMenu = currrentMenu
     },
     // 移除tags
     [Types.REMOVE_DYNAMIC_TAGS](state, index) {
@@ -160,16 +172,18 @@ const store = createStore({
   },
   getters: {
     isLogin: (state) => state.isLogin,
+    currrentMenu: (state) => state.currrentMenu,
     dynamicTags: (state) => state.dynamicTags,
     menuList: (state) => state.menuList
   },
   actions: {
+    [Types.SET_CURRENT_MENU]({ commit }, currrentMenu) {
+      commit(Types.SET_CURRENT_MENU, currrentMenu)
+    },
     [Types.SET_DYNAMIC_TAGS]({ commit }, dynamicTags) {
-      console.log(Types.SET_DYNAMIC_TAGS)
       commit(Types.SET_DYNAMIC_TAGS, dynamicTags)
     },
     [Types.REMOVE_DYNAMIC_TAGS]({ commit }, dynamicTags) {
-      console.log(Types.REMOVE_DYNAMIC_TAGS)
       commit(Types.REMOVE_DYNAMIC_TAGS, dynamicTags)
     },
     [Types.LOGIN]() {

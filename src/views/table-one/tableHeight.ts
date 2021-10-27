@@ -10,9 +10,7 @@ export default function (): any {
   const searchElm = ref<HTMLElement | any>()
   function getElmHeight(elm: any) {
     const computedStyle = getComputedStyle(elm, null) || elm.currentStyle
-    const marginBottom = Number(
-      computedStyle.marginBottom.replace('px', '') || 0
-    )
+    const marginBottom = Number(computedStyle.marginBottom.replace('px', '') || 0)
     const marginTop = Number(computedStyle.marginTop.replace('px', '') || 0)
     return (elm.clientHeight || 0) + marginBottom + marginTop
   }
@@ -37,8 +35,7 @@ export default function (): any {
     }
     //                                        searchHeight + 分页 + (herder+tag)  + otherElmHeight
     maxTableHeight.value =
-      document.body.clientHeight -
-      (searchHeight.value + 85 + 35 + otherElmHeight.value)
+      document.body.clientHeight - (searchHeight.value + 85 + 35 + otherElmHeight.value)
   }
 
   function initPageHeight() {
@@ -73,13 +70,8 @@ export default function (): any {
       tableBodyHeight = elTableBody.clientHeight
     }
     const isLessThanTable =
-      maxTableHeight.value + (searchHeight.value + otherElmHeight.value) >
-      tableBodyHeight
-    if (
-      e.wheelDelta < 0 &&
-      showAllFilter.value &&
-      tableBodyWrapperHeight < tableBodyHeight
-    ) {
+      maxTableHeight.value + (searchHeight.value + otherElmHeight.value) > tableBodyHeight
+    if (e.wheelDelta < 0 && showAllFilter.value && tableBodyWrapperHeight < tableBodyHeight) {
       showAllFilter.value = false
       nextTick().then(() => {
         winSize()
@@ -105,8 +97,7 @@ export default function (): any {
     await nextTick()
     searchElm.value = document.querySelector('.filter-content')
     tableDom.value = document.querySelector('.el-table__body-wrapper')
-    tableDom.value &&
-      tableDom.value.addEventListener('mousewheel', getScrollDire, true)
+    tableDom.value && tableDom.value.addEventListener('mousewheel', getScrollDire, true)
     initPageHeight()
   }
 
@@ -114,8 +105,7 @@ export default function (): any {
     _initPage()
   })
   onUnmounted(() => {
-    tableDom.value &&
-      tableDom.value.removeEventListener('mousewheel', getScrollDire, true)
+    tableDom.value && tableDom.value.removeEventListener('mousewheel', getScrollDire, true)
     if (iframeHtml.value) {
       iframeHtml.value.removeEventListener('resize', winSize, true)
       // 这个方法不一定能移除

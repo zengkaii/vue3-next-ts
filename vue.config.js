@@ -27,16 +27,16 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.resolve.alias.set('@', resolve('src'))
-    config["externals"] = {
-      AMap: "AMap" // 高德地图配置
+    config['externals'] = {
+      AMap: 'AMap' // 高德地图配置
     }
   },
   pluginOptions: {
-    "style-resources-loader": {
-      preProcessor: "less",
+    'style-resources-loader': {
+      preProcessor: 'less',
       patterns: [
         //这个是加上自己的路径，
-        path.resolve(__dirname, "./src/assets/less/theme.less")
+        path.resolve(__dirname, './src/assets/less/theme.less')
       ]
     }
   }

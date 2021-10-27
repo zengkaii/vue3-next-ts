@@ -1,5 +1,4 @@
-// import Vue, {CreateElement, VNode} from 'vue'
-import { defineComponent, RendererElement } from 'vue'
+import { defineComponent, RendererElement, PropType } from 'vue'
 import { MenuList } from '@/model/Store'
 import { ElMenu, ElMenuItem, ElMenuItemGroup, ElSubmenu } from 'element-plus'
 
@@ -8,7 +7,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     menuList: {
-      type: Array,
+      type: Array as PropType<MenuList[]>,
       default: () => {
         return []
       }
@@ -20,6 +19,9 @@ export default defineComponent({
       type: String
     },
     textColor: {
+      type: String
+    },
+    defaultActive: {
       type: String
     }
   },
@@ -36,16 +38,17 @@ export default defineComponent({
       let subNode: RendererElement
       if (item.children && item.children.length > 0) {
         let menuItemNodes = [] as RendererElement[]
-        menuItemNodes = item.children.map(i => {
+        menuItemNodes = item.children.map((i) => {
           if (i.children && i.children.length > 0) {
             return menuRender(i)
           } else {
             return (
-              <div onClick={() => { that.menuClickMethod(i) }}>
-                <ElMenuItem index={i.id.toString()} >
-                  <span>
-                    {i.label}
-                  </span>
+              <div
+                onClick={() => {
+                  that.menuClickMethod(i)
+                }}>
+                <ElMenuItem index={i.id.toString()}>
+                  <span>{i.label}</span>
                 </ElMenuItem>
               </div>
             )
@@ -53,39 +56,38 @@ export default defineComponent({
         })
         const slots = {
           title: () => {
-            return <span>
-              {item.label}
-            </span>
+            return <span>{item.label}</span>
           }
         }
         subNode = (
           <ElSubmenu index={item.id.toString()} v-slots={slots}>
-            <ElMenuItemGroup>
-              {menuItemNodes}
-            </ElMenuItemGroup>
+            <ElMenuItemGroup>{menuItemNodes}</ElMenuItemGroup>
           </ElSubmenu>
         )
       } else {
         subNode = (
-          <div onClick={() => {
-            that.menuClickMethod(item)
-          }}>
-            <ElMenuItem index={item.id.toString()} >
-              <span>
-                {item.label}
-              </span>
+          <div
+            onClick={() => {
+              that.menuClickMethod(item)
+            }}>
+            <ElMenuItem index={item.id.toString()}>
+              <span>{item.label}</span>
             </ElMenuItem>
-
           </div>
         )
       }
       return subNode
     }
-    (this.menuList as Array<MenuList>).forEach((item: MenuList) => {
+    const menuList = this.menuList as MenuList[]
+    menuList.forEach((item: MenuList) => {
       children.push(menuRender(item))
     })
     return (
-      <ElMenu backgroundColor={this.backgroundColor as string} textColor={this.textColor as string} activeTextColor={this.activeTextColor as string}>
+      <ElMenu
+        default-active={this.defaultActive as string}
+        backgroundColor={this.backgroundColor as string}
+        textColor={this.textColor as string}
+        activeTextColor={this.activeTextColor as string}>
         {children}
       </ElMenu>
     )

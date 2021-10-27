@@ -27,8 +27,9 @@ export default defineComponent({
     const items = ref([1, 2, 3, 4])
     const divs = ref([])
     console.log(divs)
-    const { ctx } = getCurrentInstance() as any
-    console.log(ctx)
+    const currentInstance = getCurrentInstance() as any
+    const ctx = currentInstance.appContext.config.globalProperties
+    console.log()
     const showDialog = () => {
       mountDialog({ title: '自定义标题', content: '自定义内容' })
     }

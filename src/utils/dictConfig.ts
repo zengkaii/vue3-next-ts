@@ -1,7 +1,7 @@
 export default class DictConfig {
   map = {}
-  list  : DictValue[]
-  dictValueList : DictValue[]
+  list: DictValue[]
+  dictValueList: DictValue[]
   private _valueMap = {} // 私有属性，尽量不要访问
   private _listValueMap = {} // 私有属性，尽量不要访问
   constructor(list = []) {
@@ -17,7 +17,7 @@ export default class DictConfig {
       map[item.key] = item
       this._valueMap[item.value] = item
       if (Array.isArray(item.value)) {
-        item.value.forEach(valueItem => {
+        item.value.forEach((valueItem) => {
           // if (listValueMap.hasOwnProperty(valueItem)){
           //   console.error('value为list的初始化数据中包含重复的value,请确定配置是否正确')
           // }
@@ -52,10 +52,7 @@ export default class DictConfig {
           }
         },
         filterMap: (filterConfig = [] as DictValue[]) => {
-          if (
-            !filterConfig ||
-            (Array.isArray(filterConfig) && !filterConfig.length)
-          ) {
+          if (!filterConfig || (Array.isArray(filterConfig) && !filterConfig.length)) {
             throw new Error('缺少过滤参数')
           }
           if (!Array.isArray(filterConfig)) {
@@ -75,7 +72,7 @@ export default class DictConfig {
     return new DictConfig(list)
   }
 
-  public getInfo = (value : number|string) : DictValue|number|string => {
+  public getInfo = (value: number | string): DictValue | number | string => {
     if (value === null || value === undefined) {
       return value
     }
@@ -88,7 +85,7 @@ export default class DictConfig {
     }
     return this._listValueMap[value]
   }
-  public getName = (value : number|string): string|number => {
+  public getName = (value: number | string): string | number => {
     if (value === null || value === undefined) {
       return value
     }
@@ -102,7 +99,7 @@ export default class DictConfig {
     return this._listValueMap[value].name
   }
 
-  public getNameFormList(value: number|string): number|string {
+  public getNameFormList(value: number | string): number | string {
     let obj = {
       name: value
     }

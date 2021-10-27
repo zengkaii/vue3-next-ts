@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 export default defineComponent({
   props: {
     close: {
@@ -19,11 +19,11 @@ export default defineComponent({
     },
     content: {
       type: String,
-      default: "暂无权限"
+      default: '暂无权限'
     },
     title: {
       type: String,
-      default: "提示"
+      default: '提示'
     }
   },
   setup() {
