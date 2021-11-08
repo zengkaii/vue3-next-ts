@@ -1,14 +1,23 @@
-<template lang="pug">
-div
-  el-button(@click='show = !show')
-
-  div(v-for='item in items', :key='item', :ref='(el) => { if (el) divs[i] = el; }')
-  transition(name='my-home-fade')
-    .home(style='text-align: center', v-show='show')
-      img(alt='Vue logo', src='../../assets/logo.png', style='width: 100px')
-      HelloWorld(msg='Welcome to Your Vue.js + TypeScript App')
-      el-button(@click='showDialog', type='primary') 点我看看
-  //- Notify 
+<template>
+  <div>
+    <el-button @click="show = !show"></el-button>
+    <div
+      v-for="item in items"
+      :key="item"
+      :ref="
+        (el) => {
+          if (el) divs[i] = el
+        }
+      "
+    ></div>
+    <transition name="my-home-fade">
+      <div class="home" style="text-align: center" v-show="show">
+        <img alt="Vue logo" src="../../assets/logo.png" style="width: 100px" />
+        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"> </HelloWorld>
+        <el-button @click="showDialog" type="primary">点我看看</el-button>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script lang="ts">

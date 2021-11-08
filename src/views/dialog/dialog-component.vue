@@ -1,9 +1,11 @@
-<template lang="pug">
-el-dialog.dialog-comntainer(v-on='$attrs')
-  | v-on="$attrs"
-  template(#footer)
-    el-button(@click='closeHandle()') 关闭
-    el-button(@click='closeHandle()') 确定
+<template>
+  <el-dialog class="dialog-comntainer" v-on="$attrs">
+    <span> v-on="$attrs" </span>
+    <template #footer>
+      <el-button @click="closeHandle()">关闭</el-button>
+      <el-button @click="closeHandle()">确定</el-button>
+    </template>
+  </el-dialog>
 </template>
 <script>
 import { defineComponent } from 'vue'

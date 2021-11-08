@@ -1,6 +1,7 @@
-<template lang="pug">
-.container
-  #main.chart-style
+<template>
+  <div class="container">
+    <div id="main" class="chart-style"></div>
+  </div>
 </template>
 <script lang="ts">
 import * as echarts from 'echarts'
@@ -30,9 +31,7 @@ export default defineComponent({
           }
         ]
       })
-      console.log(myChart)
     })
-
     return {
       text
     }

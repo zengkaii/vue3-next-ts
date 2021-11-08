@@ -1,9 +1,15 @@
-<template lang="pug">
-.container
-  .scroll-content
-    .content(:style='`transform: translate(0px, ${translate}px)`')
-      ul
-        li.scroll-item(v-for='(item, index) in showlist', :key='index') {{ item.name }}
+<template>
+  <div class="container">
+    <div class="scroll-content">
+      <div :style="`transform: translate(0px, ${translate}px)`">
+        <ul>
+          <li class="scroll-item" v-for="(item, index) in showlist" , :key="index">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'

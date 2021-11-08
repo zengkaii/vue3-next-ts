@@ -1,16 +1,20 @@
-<template lang="pug">
-.flex-content
-  .left-container
-    .logo
-      | vue3-next-ts
-    el-aside(width='201px')
-      AsideMenu
-  .right-container
-    el-header
-      HeaderContent
-    el-container(style='flex: 1')
-    .view-container
-      MainContent
+<template>
+  <div class="flex-content">
+    <div class="left-container">
+      <div class="logo">vue3-next-ts</div>
+      <el-aside width="201px">
+        <AsideMenu> </AsideMenu>
+      </el-aside>
+    </div>
+    <div class="right-container">
+      <el-header>
+        <HeaderContent> </HeaderContent>
+      </el-header>
+      <div class="right-container-content">
+        <MainContent> </MainContent>
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -50,6 +54,12 @@ export default defineComponent({
   .right-container {
     flex: 1;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .right-container-content {
+      width: 100%;
+      flex: 1;
+    }
   }
 }
 .el-header,

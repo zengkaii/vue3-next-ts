@@ -1,13 +1,15 @@
-<template lang="pug">
-.aside-container
-  TsMenu(
-    :menuList='menuList',
-    :backgroundColor='"#545c64"',
-    :textColor='"#fff"',
-    :activeTextColor='"#ffd04b"',
-    :defaultActive='defaultActive',
-    @menuClick='menuClick'
-  )
+<template>
+  <div class="aside-container">
+    <TsMenu
+      :menuList="menuList"
+      :backgroundColor="'#545c64'"
+      :textColor="'#fff'"
+      :activeTextColor="'#ffd04b'"
+      :defaultActive="defaultActive"
+      @menuClick="menuClick"
+    >
+    </TsMenu>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed, nextTick, ref } from 'vue'

@@ -1,9 +1,12 @@
-<template lang="pug">
-.header-container
-  .header-left
-    .header-title {{ getRouter() }}
-  .header-right
-    .header-login-out 退出
+<template>
+  <div class="header-container">
+    <div class="header-left">
+      <div class="header-title">{{ getRouter() }}</div>
+    </div>
+    <div class="header-right">
+      <div class="header-login-out">退出</div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'

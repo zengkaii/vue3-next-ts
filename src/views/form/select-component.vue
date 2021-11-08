@@ -1,6 +1,7 @@
-<template lang="pug">
-.input-component
-  el-input(v-model='message', placeholder='输入点什么试试？')
+<template>
+  <div class="input-component">
+    <el-input v-model="message" placeholder="输入点什么试试？"></el-input>
+  </div>
 </template>
 <script>
 import { defineComponent, computed } from 'vue'

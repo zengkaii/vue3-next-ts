@@ -1,55 +1,84 @@
-<template lang="pug">
-.table-container
-  .filter-content(ref='searchElm', :style='showAllFilter ? "" : "padding:12px 10px"')
-    .more-label(@click='setFilterForm()')
-      span(v-show='!showAllFilter')
-        i.el-icon-caret-bottom
-        | 展开筛选
-      span(v-show='showAllFilter')
-        i.el-icon-caret-top
-        | 收起
-    el-form(inline, v-show='showAllFilter')
-      el-form-item(label='条件一：')
-        el-input
-      el-form-item(label='条件二：')
-        el-input
-      el-form-item(label='条件三：')
-        el-input
-      el-form-item(label='条件四：')
-        el-input
-      el-form-item(label='条件五：')
-        el-input
-  .table-content
-    el-table(:data='tableData', style='width: 100%', border, :max-height='maxTableHeight')
-      el-table-column(prop='one', label='序号', type='index', width='50px', align='center')
-      el-table-column(prop='name', label='姓名', align='center')
-      el-table-column(prop='engName', label='英文名', align='center')
-      el-table-column(prop='phone', label='手机号码', align='center')
-      el-table-column(label='操作', align='center')
-        template(#default='scope')
-          el-button(type='primary') 编辑
-          el-button(type='success') 查看
-          el-button(type='danger') 删除
-  .fiexd-pagination
-    el-pagination(
-      @size-change='handleSizeChange',
-      @current-change='handleCurrentChange',
-      :currentPage='currentPage',
-      :page-size='pageSize',
-      layout='total, sizes, prev, pager, next',
-      :total='1000'
-    )
+<template>
+  <div class="table-container">
+    <div class="filter-content" ref="searchElm" :style="showAllFilter ? '' : 'padding:12px 10px'">
+      <div class="more-label" @click="setFilterForm()">
+        <span v-show="!showAllFilter">
+          <i class="el-icon-caret-bottom">展开筛选</i>
+        </span>
+        <span v-show="showAllFilter">
+          <i class="el-icon-caret-top">收起</i>
+        </span>
+      </div>
+      <el-form inline v-show="showAllFilter">
+        <el-form-item label="条件一：">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="条件二：">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="条件三：">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="条件四：">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="条件五：">
+          <el-input></el-input>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div class="table-content">
+      <el-table :data="tableData" style="width: 100%" border :max-height="maxTableHeight">
+        <el-table-column prop="one" label="序号" type="index" width="50px" align="center">
+        </el-table-column>
+        <el-table-column prop="name" label="姓名" align="center"> </el-table-column>
+        <el-table-column prop="engName" label="英文名" align="center"> </el-table-column>
+        <el-table-column prop="phone" label="手机号码" align="center"> </el-table-column>
+        <el-table-column label="操作" align="center">
+          <template>
+            <el-button type="primary">编辑</el-button>
+            <el-button type="success">查看</el-button>
+            <el-button type="danger">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <div class="fiexd-pagination">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :currentPage="listQuery.currentPage"
+        :page-size="listQuery.pageSize"
+        layout="total, sizes, prev, pager, next"
+        :total="total"
+      >
+      </el-pagination>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import tableHeight from './tableHeight'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
+interface TableType {
+  tableData: any[]
+  total: number
+  listQuery: {
+    currentPage: number
+    pageSize: number
+  }
+}
 export default defineComponent({
   name: 'TableOne',
   setup() {
     const { showAllFilter, maxTableHeight, setFilterForm } = tableHeight()
-    const tableData = ref<any>([])
-    const currentPage = ref<number>(1)
-    const pageSize = ref<number>(10)
+    const state = reactive<TableType>({
+      tableData: [],
+      total: 1000,
+      listQuery: {
+        currentPage: 1,
+        pageSize: 10
+      }
+    })
     let tableD = [] as any[]
     for (let i = 1; i < 50; i++) {
       tableD.push({
@@ -58,47 +87,18 @@ export default defineComponent({
         phone: '18888888888'
       })
     }
-    tableData.value = Object.freeze(tableD)
-
+    state.tableData = tableD
     function handleSizeChange(size: number) {
-      pageSize.value = size
+      state.listQuery.pageSize = size
     }
-
     function handleCurrentChange(page: number) {
-      currentPage.value = page
+      state.listQuery.currentPage = page
     }
-
-    // 用法如下:
-    // function fn1(x) {
-    //   return x + 1
-    // }
-    // function fn2(x) {
-    //   return x + 2
-    // }
-    // function fn3(x) {
-    //   return x + 3
-    // }
-    // function fn4(x) {
-    //   return x + 4
-    // }
-    // function compose(...fn) {
-    //   if (!fn.length) return (v) => v
-    //   if (fn.length === 1) return fn[0]
-    //   return fn.reduce(
-    //     (pre, cur) =>
-    //       (...args) =>
-    //         pre(cur(...args))
-    //   )
-    // }
-    // const a = compose(fn1, fn2, fn3, fn4)
-    // console.log(a(1)) // 1+4+3+2+1=11
     return {
+      ...toRefs(state),
       showAllFilter,
       maxTableHeight,
       setFilterForm,
-      tableData,
-      currentPage,
-      pageSize,
       handleSizeChange,
       handleCurrentChange
     }

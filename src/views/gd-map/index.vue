@@ -1,6 +1,7 @@
-<template lang="pug">
-.container
-  #mapMain.map-style
+<template>
+  <div class="container">
+    <div id="mapMain" class="map-style"></div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'

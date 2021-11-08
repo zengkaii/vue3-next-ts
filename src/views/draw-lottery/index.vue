@@ -1,12 +1,17 @@
-<template lang="pug">
-.container.draw-lottery-content
-  .draw-lottery-box
-    .draw-lottery-item(
-      v-for='item in lotteryList',
-      :key='item.id',
-      :class='item.index === currentIndex ? "active" : ""',
-      @click='startDraw(item.type)'
-    ) {{ item.name }}
+<template>
+  <div class="container draw-lottery-content">
+    <div class="draw-lottery-box">
+      <div
+        class="draw-lottery-item"
+        v-for="item in lotteryList"
+        :key="item.id"
+        :class="item.index === currentIndex ? 'active' : ''"
+        @click="startDraw(item.type)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
