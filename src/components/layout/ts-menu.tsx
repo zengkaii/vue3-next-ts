@@ -82,10 +82,10 @@ export default defineComponent({
     return () => {
       return (
         <ElMenu
-          default-active={props.defaultActive}
-          background-color={props.backgroundColor}
-          text-color={props.textColor}
-          active-text-color={props.activeTextColor}>
+          defaultActive={props.defaultActive as string}
+          backgroundColor={props.backgroundColor as string}
+          textColor={props.textColor as string}
+          activeTextColor={props.activeTextColor as string}>
           {children}
         </ElMenu>
       )
