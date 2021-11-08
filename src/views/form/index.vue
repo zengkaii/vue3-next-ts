@@ -63,7 +63,6 @@ export default defineComponent({
   name: 'MyForm',
   components: { inputComponent },
   setup() {
-    const num = reactive({ val: 100 })
     const selectId = ref(null)
     const treeData = ref<any>([
       {
@@ -189,7 +188,6 @@ export default defineComponent({
         ]
       }
     ])
-    console.log(num)
     function nodeClick(data) {
       console.log(data)
       if (data.children && data.children.length > 0) {

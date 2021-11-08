@@ -13,27 +13,24 @@ export default defineComponent({
       }
     },
     backgroundColor: {
-      type: String
+      type: String as PropType<string>
     },
     activeTextColor: {
-      type: String
+      type: String as PropType<string>
     },
     textColor: {
-      type: String
+      type: String as PropType<string>
     },
     defaultActive: {
-      type: String
+      type: String as PropType<string>
     }
   },
   emits: ['menuClick'],
-  methods: {
-    menuClickMethod(i) {
-      this.$emit('menuClick', i)
-    }
-  },
-  render() {
-    const that = this
+  setup(props, { emit }) {
     const children: RendererElement[] = []
+    function menuClickMethod(i) {
+      emit('menuClick', i)
+    }
     function menuRender(item: MenuList): RendererElement {
       let subNode: RendererElement
       if (item.children && item.children.length > 0) {
@@ -45,7 +42,7 @@ export default defineComponent({
             return (
               <div
                 onClick={() => {
-                  that.menuClickMethod(i)
+                  menuClickMethod(i)
                 }}>
                 <ElMenuItem index={i.id.toString()}>
                   <span>{i.label}</span>
@@ -68,7 +65,7 @@ export default defineComponent({
         subNode = (
           <div
             onClick={() => {
-              that.menuClickMethod(item)
+              menuClickMethod(item)
             }}>
             <ElMenuItem index={item.id.toString()}>
               <span>{item.label}</span>
@@ -78,18 +75,20 @@ export default defineComponent({
       }
       return subNode
     }
-    const menuList = this.menuList as MenuList[]
+    const menuList = props.menuList as MenuList[]
     menuList.forEach((item: MenuList) => {
       children.push(menuRender(item))
     })
-    return (
-      <ElMenu
-        default-active={this.defaultActive as string}
-        backgroundColor={this.backgroundColor as string}
-        textColor={this.textColor as string}
-        activeTextColor={this.activeTextColor as string}>
-        {children}
-      </ElMenu>
-    )
+    return () => {
+      return (
+        <ElMenu
+          default-active={props.defaultActive}
+          background-color={props.backgroundColor}
+          text-color={props.textColor}
+          active-text-color={props.activeTextColor}>
+          {children}
+        </ElMenu>
+      )
+    }
   }
 })
