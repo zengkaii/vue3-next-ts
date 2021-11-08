@@ -3,7 +3,7 @@
     <div class="scroll-content">
       <div :style="`transform: translate(0px, ${translate}px)`">
         <ul>
-          <li class="scroll-item" v-for="(item, index) in showlist" , :key="index">
+          <li class="scroll-item" v-for="(item, index) in showlist" :key="index">
             {{ item.name }}
           </li>
         </ul>
