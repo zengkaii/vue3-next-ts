@@ -12,7 +12,7 @@
     "@vant/lazyload": "^1.0.4",
     "core-js": "^3.6.5",
     "echarts": "^5.0.2",
-    "element-plus": "^1.0.2-beta.70",
+    "element-plus": "^1.2.0-beta.5",
     "superagent": "^5.2.2",
     "vue": "^3.2.20",
     "vue-router": "^4.0.1",

@@ -1,6 +1,6 @@
 import { defineComponent, RendererElement, PropType } from 'vue'
 import { MenuList } from '@/model/Store'
-import { ElMenu, ElMenuItem, ElMenuItemGroup, ElSubmenu } from 'element-plus'
+import { ElMenu, ElMenuItem, ElMenuItemGroup, ElSubMenu } from 'element-plus'
 
 export default defineComponent({
   name: 'TsMenu',
@@ -28,7 +28,7 @@ export default defineComponent({
   emits: ['menuClick'],
   setup(props, { emit }) {
     const children: RendererElement[] = []
-    function menuClickMethod(i) {
+    function menuClickMethod(i: MenuList) {
       emit('menuClick', i)
     }
     function menuRender(item: MenuList): RendererElement {
@@ -57,9 +57,9 @@ export default defineComponent({
           }
         }
         subNode = (
-          <ElSubmenu index={item.id.toString()} v-slots={slots}>
+          <ElSubMenu index={item.id.toString()} v-slots={slots}>
             <ElMenuItemGroup>{menuItemNodes}</ElMenuItemGroup>
-          </ElSubmenu>
+          </ElSubMenu>
         )
       } else {
         subNode = (

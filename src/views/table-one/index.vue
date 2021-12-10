@@ -58,7 +58,7 @@
 </template>
 <script lang="ts">
 import tableHeight from './tableHeight'
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, reactive, toRefs, onMounted } from 'vue'
 interface TableType {
   tableData: any[]
   total: number
@@ -80,6 +80,9 @@ export default defineComponent({
       }
     })
     let tableD = [] as any[]
+    onMounted(() => {
+      // setTimeout(() => {}, 1000)
+    })
     for (let i = 1; i < 50; i++) {
       tableD.push({
         name: `张三${i}`,

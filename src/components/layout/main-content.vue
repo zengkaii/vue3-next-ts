@@ -1,8 +1,9 @@
-<template lang="pug">
-#main-container
-  router-view(:key='key', v-slot='{ Component }')
-    transition(name='zoom-fade', mode='out-in')
-      component(:is='Component')
+<template>
+  <div id="main-container">
+    <router-view :key="key" v-slot="{ Component }">
+      <component :is="Component"> </component>
+    </router-view>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'

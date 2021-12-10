@@ -1,5 +1,5 @@
 <template>
-  <el-dialog class="dialog-comntainer" v-on="$attrs">
+  <el-dialog custom-class="dialog-container" v-bind="$attrs" @close="closeHandle">
     <span> v-on="$attrs" </span>
     <template #footer>
       <el-button @click="closeHandle()">关闭</el-button>
@@ -12,12 +12,12 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'dialogComponent',
   emits: ['update:modelValue'],
-  setup(props, context) {
+  setup(props, { attrs, emit }) {
     function closeHandle() {
-      context.emit('update:modelValue', false)
+      emit('update:modelValue', false)
     }
     return {
-      modelValue: context.attrs.modelValue,
+      modelValue: attrs.modelValue,
       closeHandle
     }
   }

@@ -4,28 +4,24 @@
       <el-col :span="8">
         <el-button type="primary" @click="createNewObj()">新增一级目录</el-button>
         <el-tree :data="treeData" node-key="id" default-expand-all :expand-on-click-node="false">
-          <template>
-            <span class="custom-tree-node">
-              {{ node.label }}
-            </span>
+          <template #default="{ node, data }">
+            <span class="custom-tree-node">{{ node.label }}</span>
             <span>
               <el-button
                 v-if="data.type === 'bar'"
                 type="text"
                 size="mini"
                 @click="() => append(data)"
+                >添加</el-button
               >
-                添加
-              </el-button>
               <el-button
                 v-if="!data.children || data.children.length <= 0"
                 type="text"
                 size="mini"
                 @click="() => remove(node, data)"
                 style="color: red"
+                >删除</el-button
               >
-                删除
-              </el-button>
             </span>
           </template>
         </el-tree>
@@ -44,26 +40,34 @@
                 :key="item.id"
                 :value="item.id"
                 :label="item.label"
-              >
-              </el-option>
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="菜单名称：">
-            <el-input v-model="form.label" style="width: 385px" placeholder="请输入菜单名称">
-            </el-input>
+            <el-input
+              v-model="form.label"
+              style="width: 385px"
+              placeholder="请输入菜单名称"
+            ></el-input>
           </el-form-item>
           <el-form-item label="菜单英文：">
-            <el-input v-model="form.name" style="width: 385px" placeholder="请输入菜单英文">
-            </el-input>
+            <el-input
+              v-model="form.name"
+              style="width: 385px"
+              placeholder="请输入菜单英文"
+            ></el-input>
           </el-form-item>
           <el-form-item label="菜单路径：">
-            <el-input v-model="form.path" style="width: 385px" placeholder="请输入菜单路径">
-            </el-input>
+            <el-input
+              v-model="form.path"
+              style="width: 385px"
+              placeholder="请输入菜单路径"
+            ></el-input>
           </el-form-item>
           <el-form-item label="菜单类型：">
             <el-select v-model="form.type" style="width: 385px" placeholder="请选择菜单类型">
-              <el-option label="可展开菜单" value="bar"> </el-option>
-              <el-option label="不可展开菜单" value="menu"> </el-option>
+              <el-option label="可展开菜单" value="bar"></el-option>
+              <el-option label="不可展开菜单" value="menu"></el-option>
             </el-select>
           </el-form-item>
           <br />
@@ -238,3 +242,6 @@ export default defineComponent({
   padding-right: 8px;
 }
 </style>
+
+.custom-tree-node { flex: 1; display: flex; align-items: center; justify-content: space-between;
+font-size: 14px; padding-right: 8px; }

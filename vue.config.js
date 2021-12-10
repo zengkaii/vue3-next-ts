@@ -25,6 +25,17 @@ module.exports = {
       }
     }
   },
+  configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto'
+        }
+      ]
+    }
+  },
   chainWebpack: (config) => {
     config.resolve.alias.set('@', resolve('src'))
     config['externals'] = {

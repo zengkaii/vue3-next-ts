@@ -8,6 +8,7 @@
         </el-form-item>
       </template>
     </editForm>
+    <hr />
   </div>
 </template>
 
