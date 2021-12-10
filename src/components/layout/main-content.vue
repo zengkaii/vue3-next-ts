@@ -1,7 +1,7 @@
 <template>
   <div id="main-container">
-    <router-view :key="key" v-slot="{ Component }">
-      <component :is="Component"> </component>
+    <router-view v-slot="{ Component }">
+      <component :is="Component" :key="key"> </component>
     </router-view>
   </div>
 </template>
