@@ -1,6 +1,7 @@
-<template lang="pug">
-.notify-container
-  .success 这是一个notify这是一个notify这是一个notify这是一个notify
+<template>
+  <div class="notify-container">
+    <div class="success">这是一个notify这是一个notify这是一个notify这是一个notify</div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
