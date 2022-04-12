@@ -13,6 +13,7 @@ import { Lazyload } from '@vant/lazyload'
 import directives from './directives/index'
 import appendScript from './utils/appendScript'
 import MyMessage from './package/message/index'
+import component from './package/modal/index'
 VueMarkdownEditor.use(vuepressTheme)
 
 const app = createApp(App)
@@ -20,6 +21,7 @@ app.use(store).use(router)
 app.use(VueMarkdownEditor)
 app.use(Lazyload)
 app.use(MyMessage)
+app.use(component)
 initElementUi(app)
 app.mount('#app')
 directives(app)
