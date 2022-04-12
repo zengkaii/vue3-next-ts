@@ -20,8 +20,6 @@
         <p v-if="!dangerouslyUseHTMLString" class="el-message__content">
           {{ message }}
         </p>
-        <!-- Caution here, message could've been compromised, never use user's input as message -->
-        <!--  eslint-disable-next-line -->
         <p v-else class="el-message__content" v-html="message"></p>
       </slot>
       <div v-if="showClose" class="el-message__closeBtn el-icon-close" @click.stop="close"></div>

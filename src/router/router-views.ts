@@ -81,9 +81,14 @@ const routerChildren = [
     component: () => import('@/views/functional/index.vue')
   },
   {
-    path: '/slotsDemo',
-    name: 'slotsDemo',
-    component: () => import('@/views/slotsDemo/index.vue')
+    path: '/slots-demo',
+    name: 'slots-demo',
+    component: () => import('@/views/slots-demo/index.vue')
+  },
+  {
+    path: '/water-mark',
+    name: 'water-mark',
+    component: () => import('@/views/water-mark/index.vue')
   }
 ] as RouteRecordRaw[]
 

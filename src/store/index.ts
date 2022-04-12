@@ -144,9 +144,17 @@ const store = createStore({
             parentId: 1,
             id: 24,
             label: 'slotsDemo',
-            path: '/slotsDemo',
+            path: '/slots-demo',
             type: 'menu',
-            name: 'slotsDemo'
+            name: 'slots-demo'
+          },
+          {
+            parentId: 1,
+            id: 25,
+            label: '水印',
+            path: '/water-mark',
+            type: 'menu',
+            name: 'water-mark'
           }
         ]
       }

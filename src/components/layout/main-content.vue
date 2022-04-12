@@ -24,6 +24,7 @@ export default defineComponent({
 <style lang="less" scoped>
 #main-container {
   height: 100%;
+  overflow-y: auto;
   background-color: #f8f8fa;
   .tag-row {
     overflow-y: scroll;

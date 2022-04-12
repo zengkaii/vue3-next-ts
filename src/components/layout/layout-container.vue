@@ -54,11 +54,10 @@ export default defineComponent({
   .right-container {
     flex: 1;
     height: 100vh;
-    display: flex;
     flex-direction: column;
     .right-container-content {
       width: 100%;
-      flex: 1;
+      height: calc(100vh - 65px);
     }
   }
 }
